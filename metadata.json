@@ -1,0 +1,6 @@
+{
+  "name": "DevQuest Plus",
+  "description": "Portal acadêmico gamificado para faculdade de tecnologia com desafios em HTML/CSS, JavaScript, PHP, Python e SQL, cronômetro Pomodoro, terminal simulado e recompensas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

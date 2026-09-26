@@ -1,0 +1,240 @@
+/* ==========================================================
+   DevQuest Acadêmico - Estilização Moderna em CSS3 Puro
+   Compatível com qualquer navegador sem necessidade de build
+   ========================================================== */
+
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: #182234;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Barra Lateral */
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+.badge-academico {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.nav-item button:hover, .nav-item button.active {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: var(--text-primary);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Área Principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.topbar {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-pill {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.content-body {
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Cards e Layout do Editor */
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.desafio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.linguagem-tag {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.editor-textarea {
+  width: 100%;
+  height: 160px;
+  background-color: #090d16;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95rem;
+  color: #34d399;
+  resize: vertical;
+  margin: 16px 0;
+  outline: none;
+}
+
+.editor-textarea:focus {
+  border-color: var(--accent);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.resultado-box {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.resultado-box.sucesso {
+  display: block;
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--success);
+  color: #6ee7b7;
+}
+
+.resultado-box.erro {
+  display: block;
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+}
+
+/* Pomodoro Widget */
+.pomodoro-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.pomodoro-timer {
+  font-family: monospace;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--warning);
+}

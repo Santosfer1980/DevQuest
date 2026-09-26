@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest — Loja Pessoal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="page-loja">
+    <div class="container">
+        
+        <!-- Barra Lateral de Navegação -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">⚔️</div>
+                <h1><span class="logo-dev">Dev</span><span class="logo-quest">Quest</span></h1>
+            </div>
+
+            <!-- Links de Navegação Principal -->
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item ">
+                    <span class="nav-icon">🏠</span> Painel Principal
+                </a>
+                <a href="trilhas.html" class="nav-item ">
+                    <span class="nav-icon">🐍</span> Trilhas de Código
+                </a>
+                <a href="exercicios.html" class="nav-item ">
+                    <span class="nav-icon">📝</span> Exercícios Python
+                </a>
+                <a href="quiz.html" class="nav-item ">
+                    <span class="nav-icon">⚡</span> Quiz & Desafios
+                </a>
+                <a href="historia.html" class="nav-item ">
+                    <span class="nav-icon">📜</span> História & Livros
+                </a>
+                <a href="loja.html" class="nav-item active">
+                    <span class="nav-icon">🛍️</span> Loja Pessoal
+                </a>
+            </nav>
+
+            <!-- Status do Personagem -->
+            <div class="perfil-status">
+                <div class="perfil-info-wrapper">
+                    <div class="avatar-placeholder">👨‍💻</div>
+                    <div class="info-aluno">
+                        <h3 id="txt-nome-sidebar">Fernando Santos</h3>
+                        <p class="nivel-badge">Nível <span id="txt-nivel">1</span></p>
+                    </div>
+                </div>
+                <div style="display:flex; gap:4px;"><button class="btn-login-trigger" id="btn-abrir-login" title="Perfil / Login">✏️</button><button class="btn-login-trigger" id="btn-logout" title="Sair da Conta">🚪</button></div>
+            </div>
+
+            <div class="streak-container">
+                <span class="streak-icon">🔥</span>
+                <div class="streak-detalhes">
+                    <p class="streak-texto"><b id="txt-streak">3</b> Dias de Ofensiva</p>
+                </div>
+            </div>
+
+            <div class="xp-container">
+                <div class="xp-header">
+                    <span>PROGRESSO XP</span>
+                    <span id="txt-xp-ratio">120 / 500 XP</span>
+                </div>
+                <div class="barra-xp-bg">
+                    <div id="barra-xp-fill" class="barra-xp-progresso" style="width: 24%;"></div>
+                </div>
+            </div>
+
+            <div class="gold-container">
+                <span class="gold-icon">🪙</span>
+                <div class="gold-detalhes">
+                    <p class="gold-label">SALDO DISPONÍVEL</p>
+                    <h2 class="gold-valor"><span id="txt-gold">150</span> <small>GOLD</small></h2>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- Área Principal -->
+        <main class="conteudo-principal">
+            <section class="card loja-explicativo-card">
+                <h2>🛍️ Loja de Auto-Recompensas</h2>
+                <p class="subtitulo-card" style="line-height: 1.5; color: var(--text-white); font-size: 0.8rem;">
+                    O autocontrole exige recompensas! Ao estudar com Pomodoro ou resolver os exercícios de programação, você ganha moedas de <b>Gold (🪙)</b>. Use-as para resgatar momentos saudáveis de lazer na sua vida real.
+                </p>
+            </section>
+
+            <!-- Cards de Vitrine -->
+            <section class="card">
+                <div class="loja-header">
+                    <div>
+                        <h2>🛒 Vitrine de Itens Ativos</h2>
+                        <p class="subtitulo-card">Clique em resgatar se tiver ouro suficiente.</p>
+                    </div>
+                    <button class="btn btn-accent" id="btn-abrir-modal">+ Nova Recompensa</button>
+                </div>
+                <div class="grid-recompensas" id="grid-recompensas">
+                    <!-- Gerado dinamicamente no app.js -->
+                </div>
+            </section>
+
+            <!-- Histórico de Resgates -->
+            <section class="card">
+                <h2>📜 Extrato e Histórico de Resgates</h2>
+                <p class="subtitulo-card">Confira as pausas produtivas que você conquistou estudando.</p>
+                <table class="historico-tabela">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Item Comprado</th>
+                            <th>Custo (🪙)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historico-resgates-lista">
+                        <!-- Gerado dinamicamente no app.js -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para adicionar recompensas -->
+    <div class="modal-overlay" id="modal-cadastro">
+        <div class="modal-card">
+            <h3>🆕 Cadastrar Auto-Recompensa</h3>
+            <p class="subtitulo-card">Crie um incentivo real para a sua rotina semanal.</p>
+            <form id="form-recompensa">
+                <div class="form-grupo">
+                    <label>Ícone / Emoji:</label>
+                    <select id="campo-emoji" required>
+                        <option value="☕">☕ Café / Chá</option>
+                        <option value="🎮">🎮 Jogar Videogame</option>
+                        <option value="📺">📺 Assistir Série</option>
+                        <option value="🍕">🍕 Lanche Especial</option>
+                        <option value="🍬">🍬 Doce / Chocolate</option>
+                        <option value="😴">😴 Soneca Rápida</option>
+                    </select>
+                </div>
+                <div class="form-grupo">
+                    <label>Nome da Recompensa:</label>
+                    <input type="text" id="campo-nome" placeholder="Ex: Comer 1 chocolate" required maxlength="30">
+                </div>
+                <div class="form-grupo">
+                    <label>Preço em Gold (🪙):</label>
+                    <input type="number" id="campo-custo" placeholder="Ex: 50" required min="10">
+                </div>
+                <div class="modal-botoes">
+                    <button type="button" class="btn btn-reset" id="btn-fechar-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-accent">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <!-- Modal de Identificação / Login do Herói -->
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-card">
+            <h3>🔑 Acesso ao DevQuest (Login)</h3>
+            <p class="subtitulo-card">Entre com seu usuário e senha para carregar seu progresso.</p>
+            <form id="form-login">
+                <div class="form-grupo">
+                    <label>Nome de Usuário / Dev:</label>
+                    <input type="text" id="campo-login-nome" placeholder="Ex: devquest" required maxlength="30">
+                </div>
+                <div class="form-grupo">
+                    <label>Senha de Acesso:</label>
+                    <input type="password" id="campo-login-senha" placeholder="Digite sua senha" required maxlength="30">
+                </div>
+                <div class="modal-botoes">
+                    <button type="button" class="btn btn-reset" id="btn-fechar-login">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Entrar / Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest — História & Livros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="page-historia">
+    <div class="container">
+        
+        <!-- Barra Lateral de Navegação -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">⚔️</div>
+                <h1><span class="logo-dev">Dev</span><span class="logo-quest">Quest</span></h1>
+            </div>
+
+            <!-- Links de Navegação Principal -->
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item ">
+                    <span class="nav-icon">🏠</span> Painel Principal
+                </a>
+                <a href="trilhas.html" class="nav-item ">
+                    <span class="nav-icon">🐍</span> Trilhas de Código
+                </a>
+                <a href="exercicios.html" class="nav-item ">
+                    <span class="nav-icon">📝</span> Exercícios Python
+                </a>
+                <a href="quiz.html" class="nav-item ">
+                    <span class="nav-icon">⚡</span> Quiz & Desafios
+                </a>
+                <a href="historia.html" class="nav-item active">
+                    <span class="nav-icon">📜</span> História & Livros
+                </a>
+                <a href="loja.html" class="nav-item ">
+                    <span class="nav-icon">🛍️</span> Loja Pessoal
+                </a>
+            </nav>
+
+            <!-- Status do Personagem -->
+            <div class="perfil-status">
+                <div class="perfil-info-wrapper">
+                    <div class="avatar-placeholder">👨‍💻</div>
+                    <div class="info-aluno">
+                        <h3 id="txt-nome-sidebar">Fernando Santos</h3>
+                        <p class="nivel-badge">Nível <span id="txt-nivel">1</span></p>
+                    </div>
+                </div>
+                <div style="display:flex; gap:4px;"><button class="btn-login-trigger" id="btn-abrir-login" title="Perfil / Login">✏️</button><button class="btn-login-trigger" id="btn-logout" title="Sair da Conta">🚪</button></div>
+            </div>
+
+            <div class="streak-container">
+                <span class="streak-icon">🔥</span>
+                <div class="streak-detalhes">
+                    <p class="streak-texto"><b id="txt-streak">3</b> Dias de Ofensiva</p>
+                </div>
+            </div>
+
+            <div class="xp-container">
+                <div class="xp-header">
+                    <span>PROGRESSO XP</span>
+                    <span id="txt-xp-ratio">120 / 500 XP</span>
+                </div>
+                <div class="barra-xp-bg">
+                    <div id="barra-xp-fill" class="barra-xp-progresso" style="width: 24%;"></div>
+                </div>
+            </div>
+
+            <div class="gold-container">
+                <span class="gold-icon">🪙</span>
+                <div class="gold-detalhes">
+                    <p class="gold-label">SALDO DISPONÍVEL</p>
+                    <h2 class="gold-valor"><span id="txt-gold">150</span> <small>GOLD</small></h2>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- Área Principal -->
+        <main class="conteudo-principal">
+            <section class="card header-banner" style="border-left-color: var(--cyan);">
+                <div>
+                    <h2>📜 A Biblioteca dos Ancestrais</h2>
+                    <p class="subtitulo-card" style="color: var(--text-white); margin-top: 4px;">
+                        Explore a história da computação, a origem das linguagens e os livros fundamentais de TI.
+                    </p>
+                </div>
+                <button class="btn btn-accent" id="btn-concluir-historia">Concluir Leitura (+30 XP) 📜</button>
+            </section>
+
+            <!-- Linha do Tempo dos Ancestrais -->
+            <section class="card">
+                <h2>🏺 Linha do Tempo da Programação</h2>
+                <p class="subtitulo-card" style="margin-bottom: 12px;">Os marcos históricos que deram origem ao software moderno e às trilhas do DevQuest.</p>
+
+                <div class="grid-historia">
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Ada Lovelace — A Mãe da Programação</span>
+                            <span class="marco-ano">1843</span>
+                        </div>
+                        <p class="marco-lore">"A Primeira Alquimista do Código — Provou que máquinas podiam processar símbolos e algoritmos."</p>
+                        <p class="marco-descricao">
+                            Ada Lovelace escreveu o primeiro algoritmo da história para a Máquina Analítica de Babbage. Ela previu que os computadores iriam além de meros cálculos numéricos, sendo capaz de compor músicas e processar informações complexas.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Alan Turing — A Máquina Universal</span>
+                            <span class="marco-ano">1936</span>
+                        </div>
+                        <p class="marco-lore">"O Arquiteto da Lógica — Quebrou códigos de guerra e criou o conceito de computador universal."</p>
+                        <p class="marco-descricao">
+                            Turing formalizou os conceitos de algoritmo e computação com a Máquina de Turing. Suas contribuições na Segunda Guerra Mundial salvaram milhões de vidas e assentaram os tijolos da Inteligência Artificial.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Grace Hopper — O Compilador e o Primeiro "Bug"</span>
+                            <span class="marco-ano">1947</span>
+                        </div>
+                        <p class="marco-lore">"A Caçadora de Bugs — Criou a ponte entre a linguagem humana e a linguagem de máquina."</p>
+                        <p class="marco-descricao">
+                            A Almirante Grace Hopper criou o primeiro compilador da história e popularizou a linguagem COBOL. Ela imortalizou o termo "Bug" quando removeu uma mariposa física que havia travado o computador Harvard Mark II.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Dennis Ritchie — A Linguagem C</span>
+                            <span class="marco-ano">1972</span>
+                        </div>
+                        <p class="marco-lore">"A Forja do Aço — A linguagem mãe de onde nasceram os sistemas operacionais modernos."</p>
+                        <p class="marco-descricao">
+                            Nos laboratórios Bell, Dennis Ritchie criou a Linguagem C e o Unix. Praticamente todos os sistemas operacionais (Windows, Linux, macOS) e linguagens modernas (C++, Java, PHP, Python) herdaram a sua sintaxe.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Edgar Codd & IBM — A Origem do SQL</span>
+                            <span class="marco-ano">1974</span>
+                        </div>
+                        <p class="marco-lore">"O Guardião das Relíquias — A linguagem universal para estruturar e consultar dados no mundo."</p>
+                        <p class="marco-descricao">
+                            Edgar Codd propôs o modelo relacional de bancos de dados. A partir dessa ideia nasceu o SEQUEL (hoje SQL), que alimenta a **Trilha de SQL** do DevQuest para gerenciar tabelas e relacionamentos no MySQL.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Guido van Rossum — O Nascimento do Python</span>
+                            <span class="marco-ano">1991</span>
+                        </div>
+                        <p class="marco-lore">"O Grimório da Simplicidade — A linguagem da Trilha 1 do DevQuest, focada em elegância e legibilidade."</p>
+                        <p class="marco-descricao">
+                            Criado na Holanda com o lema de que "código é lido muito mais vezes do que é escrito", o Python se tornou a linguagem número 1 do mundo para iniciantes, Ciência de Dados, IA e desenvolvimento web.
+                        </p>
+                    </article>
+
+                    <article class="marco-card">
+                        <div class="marco-header">
+                            <span class="marco-titulo">Rasmus Lerdorf — O Surgimento do PHP</span>
+                            <span class="marco-ano">1995</span>
+                        </div>
+                        <p class="marco-lore">"O Motor do Backend — A linguagem da Trilha 2 do DevQuest, criada para dar vida a páginas web dinâmicas."</p>
+                        <p class="marco-descricao">
+                            Rasmus Lerdorf criou o PHP (*Personal Home Page*) para conectar formulários web a bancos de dados. Hoje ele é o motor por trás de mais de 75% dos sites do mundo (incluindo o WordPress e o ecossistema XAMPP do nosso curso).
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Grimórios de Código (Livros Recomendados) -->
+            <section class="card">
+                <h2>📚 Grimórios de Código (Livros Recomendados)</h2>
+                <p class="subtitulo-card" style="margin-bottom: 12px;">Obras fundamentais recomendadas para estudantes de Análise e Desenvolvimento de Sistemas (ADS).</p>
+
+                <div class="grid-livros">
+                    <article class="livro-card">
+                        <div class="livro-capa">📗</div>
+                        <div>
+                            <h3 class="livro-titulo">Código Limpo (Clean Code)</h3>
+                            <p class="livro-autor">Robert C. Martin (Uncle Bob)</p>
+                        </div>
+                        <p class="livro-sinopse">
+                            A bíblia da engenharia de software. Ensina como escrever código legível, testável e de fácil manutenção usando funções pequenas e nomes significativos.
+                        </p>
+                        <button class="btn btn-accent btn-ler-livro" data-livro-id="1">Marcar como Lido (+25 XP)</button>
+                    </article>
+
+                    <article class="livro-card">
+                        <div class="livro-capa">📘</div>
+                        <div>
+                            <h3 class="livro-titulo">Entendendo Algoritmos</h3>
+                            <p class="livro-autor">Aditya Y. Bhargava</p>
+                        </div>
+                        <p class="livro-sinopse">
+                            Um guia ilustrado e totalmente prático para iniciantes em ADS. Explica busca binária, ordenação, tabelas hash e estruturas de dados de forma simples.
+                        </p>
+                        <button class="btn btn-accent btn-ler-livro" data-livro-id="2">Marcar como Lido (+25 XP)</button>
+                    </article>
+
+                    <article class="livro-card">
+                        <div class="livro-capa">📙</div>
+                        <div>
+                            <h3 class="livro-titulo">O Programador Pragmático</h3>
+                            <p class="livro-autor">Andrew Hunt & David Thomas</p>
+                        </div>
+                        <p class="livro-sinopse">
+                            Ensina a postura profissional de um desenvolvedor: automação, responsabilidade pelo código, refatoração constante e hábitos de aprendizado contínuo.
+                        </p>
+                        <button class="btn btn-accent btn-ler-livro" data-livro-id="3">Marcar como Lido (+25 XP)</button>
+                    </article>
+
+                    <article class="livro-card">
+                        <div class="livro-capa">📕</div>
+                        <div>
+                            <h3 class="livro-titulo">Padrões de Projeto (Design Patterns)</h3>
+                            <p class="livro-autor">Erich Gamma, Richard Helm, et al.</p>
+                        </div>
+                        <p class="livro-sinopse">
+                            As 23 soluções clássicas para problemas recorrentes de arquitetura Orientada a Objetos (Singleton, Factory, Observer, Strategy).
+                        </p>
+                        <button class="btn btn-accent btn-ler-livro" data-livro-id="4">Marcar como Lido (+25 XP)</button>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    
+    <!-- Modal de Identificação / Login do Herói -->
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-card">
+            <h3>🔑 Acesso ao DevQuest (Login)</h3>
+            <p class="subtitulo-card">Entre com seu usuário e senha para carregar seu progresso.</p>
+            <form id="form-login">
+                <div class="form-grupo">
+                    <label>Nome de Usuário / Dev:</label>
+                    <input type="text" id="campo-login-nome" placeholder="Ex: devquest" required maxlength="30">
+                </div>
+                <div class="form-grupo">
+                    <label>Senha de Acesso:</label>
+                    <input type="password" id="campo-login-senha" placeholder="Digite sua senha" required maxlength="30">
+                </div>
+                <div class="modal-botoes">
+                    <button type="button" class="btn btn-reset" id="btn-fechar-login">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Entrar / Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

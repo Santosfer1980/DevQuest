@@ -12,7 +12,9 @@ import {
   Sparkles,
   ChevronRight,
   Layers,
-  LogOut
+  LogOut,
+  FolderGit2,
+  FolderDown
 } from 'lucide-react';
 import { TabType, EstadoJogo } from '../types';
 
@@ -24,6 +26,7 @@ interface SidebarProps {
   onLogout?: () => void;
   isOpenMobile: boolean;
   setIsOpenMobile: (open: boolean) => void;
+  onAbrirPainelAcademico?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -33,7 +36,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onResetarDados,
   onLogout,
   isOpenMobile,
-  setIsOpenMobile
+  setIsOpenMobile,
+  onAbrirPainelAcademico
 }) => {
   const percentualXp = Math.min(Math.round((estado.xp / estado.xpLimite) * 100), 100);
   const totalConcluidos = estado.desafios.filter(d => d.concluido).length;
@@ -77,6 +81,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       label: 'Recompensas de Foco', 
       sublabel: 'Incentivos de produtividade',
       icon: <ShoppingBag className="w-4 h-4" /> 
+    },
+    { 
+      id: 'github', 
+      label: 'GitHub & Repositório', 
+      sublabel: 'Terminal e sincronização',
+      icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
+      badge: 'Git'
     }
   ];
 
@@ -219,6 +230,32 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </button>
               );
             })}
+
+            {/* Botão de Destaque: Explorador da Pasta Acadêmica */}
+            {onAbrirPainelAcademico && (
+              <div className="pt-2">
+                <button
+                  onClick={() => {
+                    onAbrirPainelAcademico();
+                    setIsOpenMobile(false);
+                  }}
+                  className="w-full flex items-center justify-between p-2.5 rounded-xl text-left bg-emerald-600/15 hover:bg-emerald-600/25 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all duration-200 cursor-pointer group shadow-xs"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="p-1.5 rounded-lg bg-emerald-600 text-white group-hover:scale-105 transition-transform">
+                      <FolderDown className="w-4 h-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold leading-none text-white">Pasta /academico</p>
+                      <p className="text-[10px] text-emerald-400/80 truncate mt-1">Ver arquivos & Baixar</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Abrir
+                  </span>
+                </button>
+              </div>
+            )}
           </nav>
         </div>
 

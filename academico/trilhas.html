@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest — Trilhas de Código</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="page-trilhas">
+    <div class="container">
+        
+        <!-- Barra Lateral de Navegação -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">⚔️</div>
+                <h1><span class="logo-dev">Dev</span><span class="logo-quest">Quest</span></h1>
+            </div>
+
+            <!-- Links de Navegação Principal -->
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item ">
+                    <span class="nav-icon">🏠</span> Painel Principal
+                </a>
+                <a href="trilhas.html" class="nav-item active">
+                    <span class="nav-icon">🐍</span> Trilhas de Código
+                </a>
+                <a href="exercicios.html" class="nav-item ">
+                    <span class="nav-icon">📝</span> Exercícios Python
+                </a>
+                <a href="quiz.html" class="nav-item ">
+                    <span class="nav-icon">⚡</span> Quiz & Desafios
+                </a>
+                <a href="historia.html" class="nav-item ">
+                    <span class="nav-icon">📜</span> História & Livros
+                </a>
+                <a href="loja.html" class="nav-item ">
+                    <span class="nav-icon">🛍️</span> Loja Pessoal
+                </a>
+            </nav>
+
+            <!-- Status do Personagem -->
+            <div class="perfil-status">
+                <div class="perfil-info-wrapper">
+                    <div class="avatar-placeholder">👨‍💻</div>
+                    <div class="info-aluno">
+                        <h3 id="txt-nome-sidebar">Fernando Santos</h3>
+                        <p class="nivel-badge">Nível <span id="txt-nivel">1</span></p>
+                    </div>
+                </div>
+                <div style="display:flex; gap:4px;"><button class="btn-login-trigger" id="btn-abrir-login" title="Perfil / Login">✏️</button><button class="btn-login-trigger" id="btn-logout" title="Sair da Conta">🚪</button></div>
+            </div>
+
+            <div class="streak-container">
+                <span class="streak-icon">🔥</span>
+                <div class="streak-detalhes">
+                    <p class="streak-texto"><b id="txt-streak">3</b> Dias de Ofensiva</p>
+                </div>
+            </div>
+
+            <div class="xp-container">
+                <div class="xp-header">
+                    <span>PROGRESSO XP</span>
+                    <span id="txt-xp-ratio">120 / 500 XP</span>
+                </div>
+                <div class="barra-xp-bg">
+                    <div id="barra-xp-fill" class="barra-xp-progresso" style="width: 24%;"></div>
+                </div>
+            </div>
+
+            <div class="gold-container">
+                <span class="gold-icon">🪙</span>
+                <div class="gold-detalhes">
+                    <p class="gold-label">SALDO DISPONÍVEL</p>
+                    <h2 class="gold-valor"><span id="txt-gold">150</span> <small>GOLD</small></h2>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- Área Principal -->
+        <main class="conteudo-principal">
+            <div class="trilha-progresso-card card">
+                <div>
+                    <h2>🎓 Suas Trilhas Acadêmicas</h2>
+                    <p class="subtitulo-card">Navegue pelas linguagens de programação do curso de ADS.</p>
+                </div>
+                <div style="text-align: right;">
+                    <p class="subtitulo-card" style="font-weight: 800; color: var(--cyan);">Python Concluído:</p>
+                    <p style="font-size: 1.1rem; font-weight: 900;"><span id="txt-progresso-python">0</span> / 10 Desafios</p>
+                </div>
+            </div>
+
+            <div class="grid-dashboard">
+                <!-- Python Card -->
+                <section class="card card-trilha-lang">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span style="font-size: 2rem;">🐍</span>
+                        <div>
+                            <h3>Trilha de Python</h3>
+                            <p class="subtitulo-card">Fundamentos de lógica de programação</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; line-height: 1.5; margin: 6px 0;">
+                        Aprenda sintaxe básica, variáveis, laços de repetição, condicionais, listas e funções no Python.
+                    </p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                        <span class="nivel-badge" style="color: var(--cyan);">LIVRE (NÍVEL 1)</span>
+                        <a href="exercicios.html" class="btn btn-accent" style="text-decoration: none; text-align: center;">Ir para Exercícios 📝</a>
+                    </div>
+                </section>
+
+                <!-- PHP Card -->
+                <section class="card card-trilha-lang bloqueada" id="curso-php">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span style="font-size: 2rem;">🐘</span>
+                        <div>
+                            <h3>Trilha de PHP</h3>
+                            <p class="subtitulo-card">Estruturas backend e persistência de sessões</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; line-height: 1.5; margin: 6px 0;">
+                        Aprenda tratamento de formulários, conexões com banco de dados MySQL, cookies e sessões PHP.
+                    </p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                        <span class="nivel-badge" id="lbl-requisito-php" style="color: var(--text-muted);">🔒 REQUER NÍVEL 2</span>
+                        <button class="btn btn-reset" disabled>Bloqueado</button>
+                    </div>
+                </section>
+
+                <!-- SQL Card -->
+                <section class="card card-trilha-lang bloqueada" id="curso-sql">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span style="font-size: 2rem;">🛢️</span>
+                        <div>
+                            <h3>Trilha de SQL</h3>
+                            <p class="subtitulo-card">Modelagem e consultas em Banco de Dados</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; line-height: 1.5; margin: 6px 0;">
+                        Domine comandos DDL (CREATE, ALTER) e DML (SELECT, INSERT, UPDATE, DELETE).
+                    </p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                        <span class="nivel-badge" id="lbl-requisito-sql" style="color: var(--text-muted);">🔒 REQUER NÍVEL 3</span>
+                        <button class="btn btn-reset" disabled>Bloqueado</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    
+    <!-- Modal de Identificação / Login do Herói -->
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-card">
+            <h3>🔑 Acesso ao DevQuest (Login)</h3>
+            <p class="subtitulo-card">Entre com seu usuário e senha para carregar seu progresso.</p>
+            <form id="form-login">
+                <div class="form-grupo">
+                    <label>Nome de Usuário / Dev:</label>
+                    <input type="text" id="campo-login-nome" placeholder="Ex: devquest" required maxlength="30">
+                </div>
+                <div class="form-grupo">
+                    <label>Senha de Acesso:</label>
+                    <input type="password" id="campo-login-senha" placeholder="Digite sua senha" required maxlength="30">
+                </div>
+                <div class="modal-botoes">
+                    <button type="button" class="btn btn-reset" id="btn-fechar-login">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Entrar / Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

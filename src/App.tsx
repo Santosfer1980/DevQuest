@@ -17,6 +17,9 @@ import { QuizView } from './components/QuizView';
 import { HistoriaView } from './components/HistoriaView';
 import { LojaView } from './components/LojaView';
 import { LandingView } from './components/LandingView';
+import { GithubHubView } from './components/GithubHubView';
+import { PainelArquivosAcademico } from './components/PainelArquivosAcademico';
+import { FolderDown } from 'lucide-react';
 
 const STORAGE_KEY = 'devquest_plus_academico_v3';
 
@@ -36,6 +39,7 @@ export default function App() {
   const [tabAtual, setTabAtual] = useState<TabType>('dashboard');
   const [isOpenMobile, setIsOpenMobile] = useState<boolean>(false);
   const [modalLevelUp, setModalLevelUp] = useState<number | null>(null);
+  const [painelArquivosAberto, setPainelArquivosAberto] = useState<boolean>(false);
 
   // Sincroniza com localStorage
   useEffect(() => {
@@ -162,7 +166,8 @@ export default function App() {
     trilhas: { titulo: 'Trilhas Práticas (HTML, CSS, JS, PHP, Python, SQL)', trilha: 'Prática de Programação' },
     quiz: { titulo: 'Arena Conceitual e Avaliação Formativa', trilha: 'Teoria & POO' },
     historia: { titulo: 'Biblioteca dos Pioneiros e Literatura Clássica', trilha: 'História & Livros' },
-    loja: { titulo: 'Incentivos de Foco e Bem-Estar', trilha: 'Saúde Mental' }
+    loja: { titulo: 'Incentivos de Foco e Bem-Estar', trilha: 'Saúde Mental' },
+    github: { titulo: 'Repositório GitHub & Terminal Git', trilha: 'Versionamento & DevOps' }
   };
 
   return (
@@ -176,6 +181,7 @@ export default function App() {
         onLogout={handleLogout}
         isOpenMobile={isOpenMobile}
         setIsOpenMobile={setIsOpenMobile}
+        onAbrirPainelAcademico={() => setPainelArquivosAberto(true)}
       />
 
       {/* Main Content Area */}
@@ -203,6 +209,16 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2.5">
+            {/* Botão de Destaque Superior: Pasta da Faculdade */}
+            <button
+              onClick={() => setPainelArquivosAberto(true)}
+              className="flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 px-3 py-1.5 rounded-xl font-bold text-xs transition-all cursor-pointer shadow-xs"
+              title="Abrir explorador de arquivos da pasta acadêmica"
+            >
+              <FolderDown className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden sm:inline">Pasta /academico</span>
+            </button>
+
             {/* Quick stats pills in topbar */}
             <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl font-mono text-xs font-bold text-amber-400 transition-all hover:border-slate-700">
               <Flame className="w-3.5 h-3.5 fill-amber-400" />
@@ -264,6 +280,12 @@ export default function App() {
               onCompletarMissao={completarMissao}
             />
           )}
+
+          {tabAtual === 'github' && (
+            <GithubHubView
+              estado={estado}
+            />
+          )}
         </main>
       </div>
 
@@ -306,6 +328,12 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Explorador Lateral de Arquivos da Pasta Acadêmica */}
+      <PainelArquivosAcademico
+        aberto={painelArquivosAberto}
+        onFechar={() => setPainelArquivosAberto(false)}
+      />
     </div>
   );
 }

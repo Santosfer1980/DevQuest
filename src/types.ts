@@ -1,6 +1,45 @@
-export type TabType = 'dashboard' | 'trilhas' | 'quiz' | 'historia' | 'loja' | 'github';
+export type TabType = 'dashboard' | 'trilhas' | 'quiz' | 'simulado' | 'academico' | 'recursos' | 'historia' | 'loja' | 'github';
 
 export type LinguagemId = 'html_css' | 'javascript' | 'php' | 'python' | 'sql';
+
+export interface DisciplinaAcademica {
+  id: string;
+  nome: string;
+  codigo: string;
+  notaA1: number | null;
+  notaA2: number | null;
+  faltas: number;
+  totalAulas: number;
+  mediaMinima: number;
+}
+
+export interface QuestaoSimuladoEnade {
+  id: number;
+  anoEnade: string;
+  disciplina: string;
+  banca?: string;
+  enunciado: string;
+  codigoTrecho?: string;
+  opcoes: {
+    letra: 'A' | 'B' | 'C' | 'D' | 'E';
+    texto: string;
+    correta: boolean;
+  }[];
+  justificativaPedagogica: string;
+  dificuldade: 'Média' | 'Difícil' | 'Conceitual';
+  recompensaXP: number;
+  recompensaGold: number;
+}
+
+export interface RecursoRepositorio {
+  id: string;
+  titulo: string;
+  categoria: 'Provas & Gabaritos' | 'Exercícios Oficiais' | 'Documentação Oficial' | 'Repositórios GitHub';
+  descricao: string;
+  url: string;
+  tag: string;
+  icone: string;
+}
 
 export interface TrilhaInfo {
   id: LinguagemId;
@@ -105,5 +144,7 @@ export interface EstadoJogo {
   quizRespondido: boolean;
   questoesRespondidas: number[];
   desafios: DesafioCodigo[];
+  disciplinas: DisciplinaAcademica[];
+  questoesEnadeRespondidas: number[];
 }
 

@@ -17,7 +17,10 @@ import {
   Zap,
   Globe2,
   Terminal,
-  Cpu
+  Cpu,
+  Award,
+  Calculator,
+  Globe
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -280,6 +283,61 @@ export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuari
                     <CheckCircle2 className="w-4 h-4 text-amber-500" /> Recompensas por foco real
                   </li>
                 </ul>
+              </div>
+            </div>
+
+            {/* Tríade de Inovações Acadêmicas para ADS */}
+            <div className="mt-12 pt-12 border-t border-slate-200/80">
+              <div className="text-center max-w-2xl mx-auto mb-8">
+                <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">Diferenciais Curriculares</span>
+                <h4 className="text-2xl font-extrabold text-slate-900 mt-1">Ferramentas Criadas para o Aluno de ADS</h4>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-2xl border border-purple-200 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
+                      <Award className="w-5 h-5" />
+                    </div>
+                    <h5 className="font-bold text-slate-950 text-base">Simulador Oficial ENADE</h5>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Treine questões reais de exames aplicados pelo INEP com justificativa comentada passo a passo.
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-purple-600">
+                    5 Questões Oficiais com Barema
+                  </div>
+                </div>
+
+                <div className="bg-white p-6 rounded-2xl border border-emerald-200 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+                      <Calculator className="w-5 h-5" />
+                    </div>
+                    <h5 className="font-bold text-slate-950 text-base">Boletim & Calculadora A1/A2</h5>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Cadastre suas disciplinas do semestre, controle faltas e saiba quanto precisa na A2 para não ir para exame.
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-emerald-600">
+                    Cálculo Inteligente de Médias
+                  </div>
+                </div>
+
+                <div className="bg-white p-6 rounded-2xl border border-cyan-200 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-3">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <h5 className="font-bold text-slate-950 text-base">Grimório de Repositórios</h5>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Acesso rápido a provas do INEP, lista da comunidade Python Brasil, documentação MDN e GitHub.
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-cyan-600">
+                    Links Diretos & Fontes Oficiais
+                  </div>
+                </div>
               </div>
             </div>
           </div>

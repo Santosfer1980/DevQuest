@@ -14,7 +14,10 @@ import {
   Layers,
   LogOut,
   FolderGit2,
-  FolderDown
+  FolderDown,
+  Calculator,
+  Globe,
+  Award
 } from 'lucide-react';
 import { TabType, EstadoJogo } from '../types';
 
@@ -62,6 +65,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
       sublabel: 'HTML, CSS, JS, PHP, Python, SQL',
       icon: <Code2 className="w-4 h-4" />,
       badge: `${totalConcluidos}/${estado.desafios.length}` 
+    },
+    { 
+      id: 'simulado', 
+      label: 'Simulado ENADE ADS', 
+      sublabel: 'Questões oficiais comentadas',
+      icon: <Award className="w-4 h-4 text-purple-400" />,
+      badge: 'Oficial'
+    },
+    { 
+      id: 'academico', 
+      label: 'Boletim & Médias', 
+      sublabel: 'Calculadora A1/A2 e faltas',
+      icon: <Calculator className="w-4 h-4 text-emerald-400" />,
+      badge: 'ADS'
+    },
+    { 
+      id: 'recursos', 
+      label: 'Recursos & Repositórios', 
+      sublabel: 'INEP, Python Brasil, MDN',
+      icon: <Globe className="w-4 h-4 text-cyan-400" />,
+      badge: 'Links'
     },
     { 
       id: 'quiz', 

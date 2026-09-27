@@ -14,13 +14,16 @@
 
 O **DevQuest** é uma plataforma educacional aberta e interativa projetada para acelerar a formação prática de estudantes e desenvolvedores de software. O projeto foca no aprendizado de programação baseado em desafios práticos de código, gamificação e produtividade sustentável através da técnica de Pomodoro e incentivos à saúde mental.
 
-### 🌟 Pilares Técnicos
-A plataforma cobre os 5 pilares essenciais do desenvolvimento moderno:
-- 🌐 **HTML & CSS**: Estruturação semântica, acessibilidade e estilização moderna.
-- ⚡ **JavaScript**: Lógica de programação, manipulação de DOM e assincronicidade.
-- 🐘 **PHP**: Desenvolvimento backend clássico e orientado a objetos, processamento de formulários e APIs.
-- 🐍 **Python**: Estruturas de dados, lógica computacional e automação.
-- 🗄️ **SQL**: Modelagem relacional, consultas DQL/DML e integridade de dados.
+### 🌟 Pilares Curriculares & Ferramentas
+A plataforma cobre os pilares essenciais do desenvolvimento moderno e da vida universitária:
+- 🌐 **HTML & CSS (10 Lições)**: Estruturação semântica, formulários, Box Model, Flexbox e CSS Grid.
+- ⚡ **JavaScript (10 Lições)**: Lógica, DOM (`getElementById`, `addEventListener`), arrow functions e coleções.
+- 🐘 **PHP (10 Lições)**: Saída, formulários `$_POST`, sessões, conexões PDO e sanitização de dados.
+- 🐍 **Python (10 Lições)**: Lógica algorítmica, loops (`range`), listas, dicionários e f-strings.
+- 🗄️ **SQL (10 Lições)**: Consultas `SELECT`, filtros `WHERE`, `JOINs`, agrupamento e DDL (`CREATE TABLE`).
+- 🎓 **Simulador Oficial ENADE ADS**: Banco de questões aplicadas pelo INEP/MEC com justificativas pedagógicas detalhadas.
+- 📊 **Boletim & Calculadora A1/A2**: Acompanhamento de notas da faculdade, cálculo de nota para aprovação e controle de faltas (presença mínima 75%).
+- 🌐 **Central de Recursos & Repositórios**: Curadoria de links oficiais (INEP, Python Brasil Wiki, MDN Web Docs e W3Schools).
 
 ---
 

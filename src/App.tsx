@@ -19,6 +19,9 @@ import { LojaView } from './components/LojaView';
 import { LandingView } from './components/LandingView';
 import { GithubHubView } from './components/GithubHubView';
 import { PainelArquivosAcademico } from './components/PainelArquivosAcademico';
+import { AcademicoView } from './components/AcademicoView';
+import { RecursosView } from './components/RecursosView';
+import { SimuladoEnadeView } from './components/SimuladoEnadeView';
 import { FolderDown } from 'lucide-react';
 
 const STORAGE_KEY = 'devquest_plus_academico_v3';
@@ -164,6 +167,9 @@ export default function App() {
   const titulosPorAba: Record<TabType, { titulo: string; trilha: string }> = {
     dashboard: { titulo: 'Painel Geral do Estudante', trilha: 'Portal Acadêmico' },
     trilhas: { titulo: 'Trilhas Práticas (HTML, CSS, JS, PHP, Python, SQL)', trilha: 'Prática de Programação' },
+    simulado: { titulo: 'Simulador Oficial ENADE & Concursos ADS', trilha: 'Avaliação Externa' },
+    academico: { titulo: 'Boletim Semestral & Calculadora de Médias A1/A2', trilha: 'Gestão Curricular' },
+    recursos: { titulo: 'Central de Recursos, Gabaritos & Repositórios', trilha: 'Pesquisa & Documentação' },
     quiz: { titulo: 'Arena Conceitual e Avaliação Formativa', trilha: 'Teoria & POO' },
     historia: { titulo: 'Biblioteca dos Pioneiros e Literatura Clássica', trilha: 'História & Livros' },
     loja: { titulo: 'Incentivos de Foco e Bem-Estar', trilha: 'Saúde Mental' },
@@ -255,6 +261,25 @@ export default function App() {
               onCompletarMissao={completarMissao}
               onVerificarLevelUp={verificarLevelUp}
             />
+          )}
+
+          {tabAtual === 'simulado' && (
+            <SimuladoEnadeView
+              estado={estado}
+              onAtualizarEstado={atualizarEstado}
+              onVerificarLevelUp={verificarLevelUp}
+            />
+          )}
+
+          {tabAtual === 'academico' && (
+            <AcademicoView
+              estado={estado}
+              onAtualizarEstado={atualizarEstado}
+            />
+          )}
+
+          {tabAtual === 'recursos' && (
+            <RecursosView />
           )}
 
           {tabAtual === 'quiz' && (

@@ -14,7 +14,10 @@ import {
   BookMarked,
   Code,
   Layers,
-  GraduationCap
+  GraduationCap,
+  Calculator,
+  Award,
+  Globe
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EstadoJogo, TabType } from '../types';
@@ -208,6 +211,90 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
         <div className="text-2xl sm:text-3xl font-black text-cyan-400 tracking-wider shrink-0">
           {relogio.hora}
+        </div>
+      </section>
+
+      {/* Novos Recursos Acadêmicos em Destaque no Painel */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Card Simulado ENADE */}
+        <div 
+          onClick={() => onNavegarPara('simulado')}
+          className="bg-gradient-to-br from-purple-950/40 via-slate-900 to-slate-950 border border-purple-500/30 rounded-2xl p-5 space-y-3 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 cursor-pointer group"
+        >
+          <div className="flex items-center justify-between">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30 group-hover:scale-105 transition-transform">
+              <Award className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">
+              OFICIAL INEP
+            </span>
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-white group-hover:text-purple-300 transition-colors">
+              Simulador ENADE ADS
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+              Treine questões reais de exames e concursos com gabarito comentado passo a passo.
+            </p>
+          </div>
+          <div className="pt-2 border-t border-purple-500/20 flex items-center justify-between text-xs font-semibold text-purple-400">
+            <span>Iniciar Simulado</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+
+        {/* Card Boletim e Calculadora */}
+        <div 
+          onClick={() => onNavegarPara('academico')}
+          className="bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-950 border border-emerald-500/30 rounded-2xl p-5 space-y-3 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-xl hover:shadow-emerald-500/10 cursor-pointer group"
+        >
+          <div className="flex items-center justify-between">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30 group-hover:scale-105 transition-transform">
+              <Calculator className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+              PROVAS A1/A2
+            </span>
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">
+              Boletim & Calculadora
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+              Cadastre suas matérias e saiba a nota exata para passar direto sem exame ou DP.
+            </p>
+          </div>
+          <div className="pt-2 border-t border-emerald-500/20 flex items-center justify-between text-xs font-semibold text-emerald-400">
+            <span>Calcular Minhas Notas</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+
+        {/* Card Recursos & Repositórios */}
+        <div 
+          onClick={() => onNavegarPara('recursos')}
+          className="bg-gradient-to-br from-cyan-950/40 via-slate-900 to-slate-950 border border-cyan-500/30 rounded-2xl p-5 space-y-3 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400 hover:shadow-xl hover:shadow-cyan-500/10 cursor-pointer group"
+        >
+          <div className="flex items-center justify-between">
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30 group-hover:scale-105 transition-transform">
+              <Globe className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+              REPOSITÓRIOS
+            </span>
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
+              Grimório de Links & Docs
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+              Links diretos para Python Brasil, MDN Web Docs, repositórios de exercícios e GitHub.
+            </p>
+          </div>
+          <div className="pt-2 border-t border-cyan-500/20 flex items-center justify-between text-xs font-semibold text-cyan-400">
+            <span>Acessar Fontes</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
         </div>
       </section>
 

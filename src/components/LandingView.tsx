@@ -1,28 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { 
-  Sparkles, 
   ArrowRight, 
   CheckCircle2, 
-  Code2, 
-  Flame, 
-  ShieldCheck, 
-  Upload, 
-  Camera, 
-  User, 
-  Lock, 
-  Mail, 
-  Compass, 
-  Target, 
-  HeartHandshake, 
-  Zap,
-  Globe2,
   Terminal,
-  Cpu,
-  Award,
-  Calculator,
-  Globe
+  Upload,
+  Camera,
+  FileText,
+  Download,
+  FolderDown,
+  Sparkles
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 
 interface LandingViewProps {
   onLoginSucesso: (dados: { nome: string; email: string; avatarUrl: string }) => void;
@@ -30,20 +17,12 @@ interface LandingViewProps {
 }
 
 export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuarioAtual }) => {
-  const [modoAuth, setModoAuth] = useState<boolean>(false);
   const [nome, setNome] = useState<string>(usuarioAtual.nome || 'Fernando Santos');
-  const [email, setEmail] = useState<string>(usuarioAtual.email || 'estudante.dev@exemplo.com');
+  const [email, setEmail] = useState<string>(usuarioAtual.email || 'fernando.dev@exemplo.com');
   const [senha, setSenha] = useState<string>('••••••••');
   const [avatarPreview, setAvatarPreview] = useState<string>(usuarioAtual.avatarUrl || '');
   const [arrastando, setArrastando] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const avataresPredefinidos = [
-    { id: 'dev1', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80', label: 'Avatar 1' },
-    { id: 'dev2', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80', label: 'Avatar 2' },
-    { id: 'dev3', url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80', label: 'Avatar 3' },
-    { id: 'dev4', url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80', label: 'Avatar 4' },
-  ];
 
   const handleArquivoSelecionado = (file: File) => {
     if (!file.type.startsWith('image/')) {
@@ -62,7 +41,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuari
   const handleEntrar = (e: React.FormEvent) => {
     e.preventDefault();
     if (!nome.trim()) {
-      alert('Por favor informe o seu nome.');
+      alert('Por favor informe o seu nome de usuário.');
       return;
     }
     onLoginSucesso({
@@ -72,325 +51,177 @@ export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuari
     });
   };
 
-  return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-indigo-500 selection:text-white">
-      {/* Header Superior Limpo */}
-      <header className="border-b border-slate-100 sticky top-0 z-30 bg-white/95 backdrop-blur-xs">
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/25">
-              <Terminal className="w-6 h-6" />
-            </div>
-            <div>
-              {/* Nome da plataforma em movimento suave */}
-              <motion.div 
-                className="text-2xl font-black tracking-tight flex items-center gap-1.5"
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-                style={{
-                  backgroundImage: 'linear-gradient(90deg, #4f46e5, #9333ea, #2563eb, #4f46e5)',
-                  backgroundSize: '200% auto',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
-              >
-                DevQuest
-                <span className="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/60 -webkit-text-fill-color-initial">
-                  Platform
-                </span>
-              </motion.div>
-              <p className="text-xs text-slate-500 font-medium">Plataforma Aberta de Formação em Programação</p>
-            </div>
-          </div>
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => {
-                setModoAuth(true);
-                setTimeout(() => {
-                  document.getElementById('auth-section')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-              className="px-5 py-2.5 rounded-xl text-sm font-bold text-indigo-600 hover:bg-indigo-50 border border-indigo-200/80 transition-all cursor-pointer"
-            >
-              Fazer Login
-            </button>
-            <button
-              onClick={() => {
-                setModoAuth(true);
-                setTimeout(() => {
-                  document.getElementById('auth-section')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-              className="px-5 py-2.5 rounded-xl text-sm font-bold bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-600/25 transition-all flex items-center gap-2 cursor-pointer"
-            >
-              Começar Agora
-              <ArrowRight className="w-4 h-4" />
-            </button>
+  const handleBaixarPDFDirect = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/DevQuest_Documentacao_Capitulos_01_ao_06.pdf');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'DevQuest_Documentacao_Capitulos_01_ao_06.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      window.open('/documento.html', '_blank');
+    }
+  };
+
+  return (
+    <div 
+      className="min-h-screen w-full bg-[#0d0e12] text-[#e0e2e8] font-mono flex items-center justify-center p-3 sm:p-6 lg:p-10 selection:bg-[#00ffaa] selection:text-[#0d0e12]"
+      style={{
+        backgroundImage: `
+          radial-gradient(ellipse at center, rgba(13, 14, 18, 0.82) 0%, rgba(13, 14, 18, 0.95) 100%),
+          url('/bg_cyber.jpg')
+        `,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Container Principal do Terminal - Variation 3 */}
+      <div className="w-full max-w-[1400px] min-h-[90vh] bg-[#16181d] border-2 border-[rgba(224,226,232,0.12)] flex flex-col justify-between shadow-2xl relative overflow-hidden">
+        
+        {/* System Bar */}
+        <div className="h-10 bg-[rgba(224,226,232,0.06)] border-b border-[rgba(224,226,232,0.12)] px-4 flex items-center justify-between select-none shrink-0">
+          <div className="font-['DotGothic16',sans-serif] text-sm sm:text-base text-[#00ffaa] flex items-center gap-2 tracking-wide">
+            <span className="w-2 h-2 rounded-full bg-[#00ffaa] animate-pulse"></span>
+            SYSTEM_EXEC: DevQuest_Platform.exe // ADS_2026
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 rounded-full bg-[rgba(224,226,232,0.3)]"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#00ffaa] shadow-[0_0_8px_#00ffaa]"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[rgba(224,226,232,0.3)]"></div>
           </div>
         </div>
-      </header>
 
-      {/* Hero Section com Fundo Branco & Animações */}
-      <main className="flex-1">
-        <section className="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
-            Ecossistema Completo de Aprendizado Prático & Gamificado
-          </motion.div>
-
-          {/* Logotipo DevQuest em movimento destacado */}
-          <div className="relative inline-block mb-6">
-            <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight"
-              animate={{
-                scale: [1, 1.02, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <span className="text-slate-900">Acelere sua Jornada no </span>
-              <motion.span
-                className="inline-block bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent font-extrabold"
-                animate={{
-                  filter: ['drop-shadow(0 0 0px rgba(79,70,229,0))', 'drop-shadow(0 4px 20px rgba(99,102,241,0.35))', 'drop-shadow(0 0 0px rgba(79,70,229,0))']
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                DevQuest
-              </motion.span>
-            </motion.h1>
-          </div>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10"
-          >
-            Pratique código real em <strong>HTML, CSS, JavaScript, PHP, Python e SQL</strong>. 
-            Mantenha seu foco com técnica Pomodoro, suba de nível com recompensas de estudo e domine a programação sem burocracia.
-          </motion.p>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <button
-              id="btn-comecar-agora"
-              onClick={() => {
-                setModoAuth(true);
-                setTimeout(() => {
-                  document.getElementById('auth-section')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-              className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-bold text-base hover:bg-indigo-700 shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-3 cursor-pointer group"
-            >
-              <span>Clique aqui para começar</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <a
-              href="#valores-objetivos"
-              className="px-6 py-4 rounded-2xl border border-slate-200 text-slate-700 font-bold text-base hover:bg-slate-50 transition-all"
-            >
-              Conhecer Objetivos & Valores
-            </a>
-          </motion.div>
-        </section>
-
-        {/* Seção de Valores e Objetivos */}
-        <section id="valores-objetivos" className="py-16 bg-slate-50 border-y border-slate-100">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2">Propósito da Plataforma</h2>
-              <h3 className="text-3xl font-extrabold text-slate-900">Missão, Objetivos & Valores</h3>
-              <p className="text-sm text-slate-500 mt-2">Construído para qualquer pessoa que deseja aprender e se aprofundar em tecnologia com autonomia e disciplina.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Card 1: Objetivo Principal */}
-              <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-5 font-bold">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">Nosso Objetivo</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Eliminar a paralisia do aprendizado fornecendo um ambiente prático, interativo e direto ao ponto, onde a teoria de algoritmos, web e bancos de dados se traduz imediatamente em código executado.
-                </p>
-                <ul className="mt-4 space-y-2 text-xs font-medium text-slate-600">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Prática em 5 pilares essenciais de TI
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Feedback pedagógico em tempo real
-                  </li>
-                </ul>
-              </div>
-
-              {/* Card 2: Valores Centrais */}
-              <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5 font-bold">
-                  <Compass className="w-6 h-6" />
-                </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">Valores Fundamentais</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Defendemos a <strong>consistência diária sobre o esforço esgotante</strong>. Aprender 25 minutos por dia através de repetição e método gera resultados superiores a maratonas desordenadas.
-                </p>
-                <ul className="mt-4 space-y-2 text-xs font-medium text-slate-600">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-500" /> Autonomia total do estudante
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-500" /> Transparência e código limpo
-                  </li>
-                </ul>
-              </div>
-
-              {/* Card 3: Equilíbrio e Bem-Estar */}
-              <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-5 font-bold">
-                  <HeartHandshake className="w-6 h-6" />
-                </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">Saúde Mental & Gamificação</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  O tempo de descanso é parte da engenharia. Nosso sistema de moedas de ouro permite resgatar pausas e pausas de lazer saudáveis como café, descanso e caminhada.
-                </p>
-                <ul className="mt-4 space-y-2 text-xs font-medium text-slate-600">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-amber-500" /> Pomodoro de 25 min com pausas
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-amber-500" /> Recompensas por foco real
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Tríade de Inovações Acadêmicas para ADS */}
-            <div className="mt-12 pt-12 border-t border-slate-200/80">
-              <div className="text-center max-w-2xl mx-auto mb-8">
-                <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">Diferenciais Curriculares</span>
-                <h4 className="text-2xl font-extrabold text-slate-900 mt-1">Ferramentas Criadas para o Aluno de ADS</h4>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-2xl border border-purple-200 shadow-xs flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
-                      <Award className="w-5 h-5" />
-                    </div>
-                    <h5 className="font-bold text-slate-950 text-base">Simulador Oficial ENADE</h5>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Treine questões reais de exames aplicados pelo INEP com justificativa comentada passo a passo.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-purple-600">
-                    5 Questões Oficiais com Barema
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-emerald-200 shadow-xs flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
-                      <Calculator className="w-5 h-5" />
-                    </div>
-                    <h5 className="font-bold text-slate-950 text-base">Boletim & Calculadora A1/A2</h5>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Cadastre suas disciplinas do semestre, controle faltas e saiba quanto precisa na A2 para não ir para exame.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-emerald-600">
-                    Cálculo Inteligente de Médias
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-cyan-200 shadow-xs flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-3">
-                      <Globe className="w-5 h-5" />
-                    </div>
-                    <h5 className="font-bold text-slate-950 text-base">Grimório de Repositórios</h5>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Acesso rápido a provas do INEP, lista da comunidade Python Brasil, documentação MDN e GitHub.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-cyan-600">
-                    Links Diretos & Fontes Oficiais
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pilares Tecnológicos */}
-        <section className="py-14 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 text-center mb-8">Tecnologias Praticadas no DevQuest</h4>
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-500" /> HTML5 Semântico
-              </div>
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> CSS3 & Flexbox
-              </div>
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> JavaScript ES6+
-              </div>
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-indigo-500" /> PHP Backend
-              </div>
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Python Algoritmos
-              </div>
-              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" /> SQL Relacional
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção de Login Universal & Foto */}
-        <section id="auth-section" className="py-20 bg-slate-900 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-radial from-indigo-900/30 via-slate-900/80 to-slate-950 pointer-events-none" />
+        {/* Content Layout (Main + Sidebar) */}
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_420px] overflow-hidden">
           
-          <div className="max-w-md mx-auto px-6 relative z-10">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-3">
-                <User className="w-3.5 h-3.5" /> Acesso do Desenvolvedor
+          {/* Main View */}
+          <div className="p-6 sm:p-10 lg:p-12 overflow-y-auto border-b lg:border-b-0 lg:border-r border-[rgba(224,226,232,0.12)] space-y-8">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#00ffaa] mb-3 block">
+                // INITIALIZING MODULE_01
+              </span>
+              
+              <h1 className="font-['Syne',sans-serif] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight uppercase text-white mb-6">
+                Acelere sua Jornada no <span className="text-[#00ffaa] underline decoration-[rgba(0,255,170,0.4)] decoration-4 underline-offset-8">DevQuest</span>
+              </h1>
+              
+              <p className="text-base sm:text-lg text-[rgba(224,226,232,0.7)] max-w-2xl leading-relaxed mb-8 font-mono">
+                Pratique código real em <strong className="text-white">HTML, CSS, JavaScript, PHP, Python e SQL</strong>. Ecossistema completo de aprendizado prático & gamificado para dominar a programação com simulador oficial ENADE e apoio curricular.
+              </p>
+
+              {/* Button Stack */}
+              <div className="flex flex-wrap items-center gap-4">
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('input-username');
+                    el?.focus();
+                  }}
+                  className="px-6 py-3.5 bg-[#00ffaa] text-[#0d0e12] font-bold uppercase text-xs sm:text-sm tracking-wider transition-all duration-200 hover:shadow-[0_0_20px_#00ffaa] hover:-translate-y-0.5 cursor-pointer font-mono"
+                >
+                  Começar Agora_
+                </button>
+                <button 
+                  onClick={() => scrollToSection('objetivos-grid')}
+                  className="px-6 py-3.5 border border-[#00ffaa] text-[#00ffaa] bg-transparent font-bold uppercase text-xs sm:text-sm tracking-wider transition-all duration-200 hover:bg-[rgba(0,255,170,0.1)] hover:shadow-[0_0_15px_rgba(0,255,170,0.4)] hover:-translate-y-0.5 cursor-pointer font-mono"
+                >
+                  Conhecer Objetivos_
+                </button>
+                <button
+                  type="button"
+                  onClick={handleBaixarPDFDirect}
+                  className="px-5 py-3.5 bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-400 text-indigo-200 hover:text-white text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                >
+                  <Download className="w-4 h-4 text-[#00ffaa]" />
+                  <span>BAIXAR PDF OFICIAL (Caps. 01 ao 06)</span>
+                </button>
               </div>
-              <h3 className="text-2xl font-bold text-white">Entre no seu Painel DevQuest</h3>
-              <p className="text-xs text-slate-400 mt-1">Personalize com seu nome e foto para qualquer desenvolvedor ou estudante utilizar.</p>
             </div>
 
-            <form onSubmit={handleEntrar} className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-5 backdrop-blur-md">
-              
-              {/* Foto de Perfil / Upload */}
-              <div className="text-center">
-                <label className="block text-xs font-semibold text-slate-300 mb-2">Sua Foto de Perfil</label>
-                
-                <div className="flex flex-col items-center">
-                  <div 
+            {/* Card Grid */}
+            <div id="objetivos-grid" className="pt-4">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[rgba(224,226,232,0.5)] block mb-4">
+                // ARQUITETURA DE VALORES & DIRETRIZES
+              </span>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="border border-[rgba(224,226,232,0.12)] p-5 bg-[rgba(255,255,255,0.02)] hover:border-[#00ffaa] transition-colors group">
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-[#00ffaa] mb-2 block font-bold">
+                    [01] Missão
+                  </span>
+                  <h3 className="font-['Syne',sans-serif] text-lg font-bold text-[#00ffaa] mb-1.5 transition-colors">
+                    Foco Prático
+                  </h3>
+                  <p className="text-xs text-[rgba(224,226,232,0.7)] leading-relaxed">
+                    Eliminar a paralisia do aprendizado fornecendo um ambiente interativo onde a teoria de algoritmos e banco de dados se traduz imediatamente em código executado.
+                  </p>
+                </div>
+
+                <div className="border border-[rgba(224,226,232,0.12)] p-5 bg-[rgba(255,255,255,0.02)] hover:border-[#00ffaa] transition-colors group">
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-[#00ffaa] mb-2 block font-bold">
+                    [02] Valores
+                  </span>
+                  <h3 className="font-['Syne',sans-serif] text-lg font-bold text-[#00ffaa] mb-1.5 transition-colors">
+                    Consistência
+                  </h3>
+                  <p className="text-xs text-[rgba(224,226,232,0.7)] leading-relaxed">
+                    Aprendizado diário com sessões de 25 minutos gera fixação neurológica superior a maratonas desordenadas e exaustivas.
+                  </p>
+                </div>
+
+                <div className="border border-[rgba(224,226,232,0.12)] p-5 bg-[rgba(255,255,255,0.02)] hover:border-[#00ffaa] transition-colors group">
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-[#00ffaa] mb-2 block font-bold">
+                    [03] Saúde
+                  </span>
+                  <h3 className="font-['Syne',sans-serif] text-lg font-bold text-[#00ffaa] mb-1.5 transition-colors">
+                    Mental Health
+                  </h3>
+                  <p className="text-xs text-[rgba(224,226,232,0.7)] leading-relaxed">
+                    Técnica Pomodoro integrada com sistema de moedas virtuais para resgatar pausas de hidratação e lazer consciente sem culpa.
+                  </p>
+                </div>
+
+                <div className="border border-[rgba(224,226,232,0.12)] p-5 bg-[rgba(255,255,255,0.02)] hover:border-[#00ffaa] transition-colors group">
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-[#00ffaa] mb-2 block font-bold">
+                    [04] ADS
+                  </span>
+                  <h3 className="font-['Syne',sans-serif] text-lg font-bold text-[#00ffaa] mb-1.5 transition-colors">
+                    Exames Oficiais
+                  </h3>
+                  <p className="text-xs text-[rgba(224,226,232,0.7)] leading-relaxed">
+                    Simulador oficial do ENADE com questões comentadas do INEP e calculadora preditiva de médias A1/A2 desenhada para alunos de tecnologia.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar View (Auth Panel + Tech Stack) */}
+          <div className="p-6 sm:p-8 bg-[rgba(0,0,0,0.3)] overflow-y-auto flex flex-col justify-between space-y-6">
+            
+            {/* Auth Panel */}
+            <div className="bg-[#000] border border-[#00ffaa] p-6 shadow-[0_0_20px_rgba(0,255,170,0.1)]">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#00ffaa] font-bold block mb-4">
+                // ACESSO DO DESENVOLVEDOR
+              </span>
+
+              <form onSubmit={handleEntrar} className="space-y-4">
+                {/* Avatar upload terminal-style */}
+                <div className="flex items-center gap-3 pb-3 border-b border-[rgba(224,226,232,0.1)]">
+                  <div
                     onClick={() => fileInputRef.current?.click()}
                     onDragOver={(e) => { e.preventDefault(); setArrastando(true); }}
                     onDragLeave={() => setArrastando(false)}
@@ -401,133 +232,138 @@ export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuari
                         handleArquivoSelecionado(e.dataTransfer.files[0]);
                       }
                     }}
-                    className={`relative w-24 h-24 rounded-2xl border-2 border-dashed cursor-pointer flex flex-col items-center justify-center overflow-hidden transition-all group ${
+                    className={`w-14 h-14 border border-dashed flex items-center justify-center cursor-pointer overflow-hidden transition-all shrink-0 ${
                       arrastando 
-                        ? 'border-indigo-400 bg-indigo-500/20' 
-                        : 'border-slate-700 hover:border-indigo-500 bg-slate-900/60'
+                        ? 'border-[#00ffaa] bg-[rgba(0,255,170,0.15)]' 
+                        : 'border-[rgba(224,226,232,0.3)] hover:border-[#00ffaa] bg-[#111]'
                     }`}
                   >
                     {avatarPreview ? (
-                      <>
-                        <img 
-                          src={avatarPreview} 
-                          alt="Avatar selecionado" 
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover" 
-                        />
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-[10px] text-white transition-opacity font-medium">
-                          <Camera className="w-4 h-4 mb-1" />
-                          Trocar Foto
-                        </div>
-                      </>
+                      <img 
+                        src={avatarPreview} 
+                        alt="Avatar" 
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover" 
+                      />
                     ) : (
-                      <div className="flex flex-col items-center justify-center p-2 text-center text-slate-400 group-hover:text-indigo-300">
-                        <Upload className="w-6 h-6 mb-1" />
-                        <span className="text-[10px] font-medium leading-tight">Enviar foto ou arrastar</span>
-                      </div>
+                      <Upload className="w-5 h-5 text-[rgba(224,226,232,0.5)]" />
                     )}
                   </div>
-                  
-                  <input 
+                  <div>
+                    <p className="text-[11px] font-bold text-white uppercase">Foto de Perfil</p>
+                    <p className="text-[10px] text-[rgba(224,226,232,0.5)]">Clique ou arraste uma imagem</p>
+                  </div>
+                  <input
                     ref={fileInputRef}
-                    type="file" 
-                    accept="image/*" 
-                    className="hidden" 
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
                         handleArquivoSelecionado(e.target.files[0]);
                       }
                     }}
                   />
-
-                  {/* Sugestões rápidas de avatares */}
-                  <div className="flex items-center gap-2 mt-3">
-                    <span className="text-[10px] text-slate-400">ou escolha:</span>
-                    {avataresPredefinidos.map((av) => (
-                      <button
-                        key={av.id}
-                        type="button"
-                        onClick={() => setAvatarPreview(av.url)}
-                        className={`w-7 h-7 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                          avatarPreview === av.url ? 'border-indigo-500 scale-110' : 'border-transparent opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        <img src={av.url} alt={av.label} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
-                      </button>
-                    ))}
-                  </div>
                 </div>
-              </div>
 
-              {/* Nome do Desenvolvedor */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Seu Nome / Usuário</label>
-                <div className="relative">
-                  <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
+                <div>
+                  <label className="block text-[10px] uppercase text-[rgba(224,226,232,0.6)] mb-1.5 font-bold tracking-wider">
+                    USER_NAME
+                  </label>
+                  <input 
+                    id="input-username"
+                    type="text" 
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
-                    placeholder="Ex: Fernando Santos"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-hidden focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                    placeholder="Digite seu nome completo"
+                    required
+                    className="w-full bg-[#111] border border-[rgba(224,226,232,0.2)] focus:border-[#00ffaa] focus:outline-none p-3 text-sm text-white font-mono transition-colors"
                   />
                 </div>
-              </div>
 
-              {/* Email / Login */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">E-mail de Acesso</label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="email"
-                    required
+                <div>
+                  <label className="block text-[10px] uppercase text-[rgba(224,226,232,0.6)] mb-1.5 font-bold tracking-wider">
+                    SYS_EMAIL
+                  </label>
+                  <input 
+                    type="email" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="seu.email@exemplo.com"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-hidden focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                    placeholder="estudante.dev@exemplo.com"
+                    required
+                    className="w-full bg-[#111] border border-[rgba(224,226,232,0.2)] focus:border-[#00ffaa] focus:outline-none p-3 text-sm text-white font-mono transition-colors"
                   />
                 </div>
-              </div>
 
-              {/* Senha */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Senha</label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="password"
-                    required
+                <div>
+                  <label className="block text-[10px] uppercase text-[rgba(224,226,232,0.6)] mb-1.5 font-bold tracking-wider">
+                    ENCRYPT_KEY
+                  </label>
+                  <input 
+                    type="password" 
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-hidden focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                    className="w-full bg-[#111] border border-[rgba(224,226,232,0.2)] focus:border-[#00ffaa] focus:outline-none p-3 text-sm text-white font-mono transition-colors"
                   />
                 </div>
+
+                <button 
+                  type="submit"
+                  className="w-full py-3.5 bg-[#00ffaa] text-[#0d0e12] font-bold uppercase text-xs tracking-wider transition-all duration-200 hover:shadow-[0_0_20px_#00ffaa] hover:-translate-y-0.5 cursor-pointer font-mono mt-2"
+                >
+                  Exec_Acessar_
+                </button>
+              </form>
+            </div>
+
+            {/* Core Tech Stack */}
+            <div className="border border-[rgba(224,226,232,0.12)] p-4 bg-[#111]">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#00ffaa] font-bold block mb-3">
+                Core_Tech_Stack
+              </span>
+              <div className="grid grid-cols-2 gap-2 text-xs text-[#00ffaa]">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">HTML5 Semântico</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">CSS3 & Flexbox</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">JavaScript ES6+</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">PHP Backend</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">Python Algoritmos</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#00ffaa] shrink-0 shadow-[0_0_6px_#00ffaa]"></div>
+                  <span className="font-semibold">SQL Relacional</span>
+                </div>
               </div>
+            </div>
 
-              {/* Botão de Entrar */}
-              <button
-                type="submit"
-                className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
-              >
-                <span>Acessar Painel de Estudos</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <p className="text-[11px] text-center text-slate-500">
-                Seus dados e progresso são salvos localmente no seu próprio navegador.
-              </p>
-            </form>
           </div>
-        </section>
-      </main>
+        </div>
 
-      {/* Footer Simples */}
-      <footer className="border-t border-slate-100 bg-white py-8 text-center text-xs text-slate-400">
-        <p>© 2026 DevQuest • Plataforma Aberta de Formação & Produtividade em Programação</p>
-      </footer>
+        {/* Footer */}
+        <footer className="h-10 px-4 sm:px-6 bg-[rgba(0,0,0,0.5)] border-t border-[rgba(224,226,232,0.12)] text-[10px] text-[rgba(224,226,232,0.5)] flex items-center justify-between font-mono shrink-0">
+          <span className="text-[#00ffaa] flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00ffaa]"></span>
+            RUNNING: V2.6_ADS
+          </span>
+          <span className="truncate ml-2">
+            © 2026 DEVQUEST // PLATAFORMA ABERTA DE FORMAÇÃO
+          </span>
+        </footer>
+
+      </div>
     </div>
   );
 };

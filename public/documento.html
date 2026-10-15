@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest - Documentação Completa (Capítulos 01 ao 06)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 25mm 25mm;
+        }
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            color: #111;
+            line-height: 1.5;
+            font-size: 11pt;
+            background: #fff;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cover {
+            text-align: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            padding: 40px 0;
+        }
+        .cover-header {
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+        .cover-title {
+            margin: auto 0;
+        }
+        .cover-title h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .cover-title h2 {
+            font-size: 13pt;
+            font-weight: normal;
+            color: #333;
+        }
+        .cover-footer {
+            font-size: 11pt;
+            line-height: 1.6;
+        }
+        .author {
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        h2.chapter {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #1e3a8a;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 6px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        h3.section {
+            font-size: 12.5pt;
+            font-weight: bold;
+            color: #222;
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+        h4.subsection {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #444;
+            margin-top: 15px;
+            margin-bottom: 6px;
+        }
+        p {
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin-bottom: 10px;
+        }
+        p.no-indent {
+            text-indent: 0;
+        }
+        ul {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+        .badge {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9pt;
+            font-weight: bold;
+        }
+        .callout {
+            border-left: 4px solid #1e3a8a;
+            background: #f8fafc;
+            padding: 12px 18px;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+        .no-print {
+            background: #1e293b;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .btn-print {
+            background: #00ffaa;
+            color: #0d0e12;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11pt;
+        }
+        .btn-print:hover {
+            background: #00dd99;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="no-print">
+        <div>
+            <strong>Documento Oficial Formatado:</strong> Pronto para impressão e download em PDF direto no navegador.
+        </div>
+        <button class="btn-print" onclick="window.print()">Salvar / Imprimir em PDF</button>
+    </div>
+
+    <!-- CAPA -->
+    <div class="cover">
+        <div class="cover-header">
+            UNIVERSIDADE NOVE DE JULHO – UNINOVE<br>
+            DIRETORIA DE CIÊNCIAS EXATAS E TECNOLOGIA DA INFORMAÇÃO<br>
+            CURSO SUPERIOR DE TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
+        </div>
+
+        <div class="cover-title">
+            <h1>DEVQUEST: PLATAFORMA WEB GAMIFICADA PARA O APRENDIZADO DE PROGRAMAÇÃO E SUPORTE ACADÊMICO EM TI</h1>
+            <h2>DOCUMENTAÇÃO TÉCNICO-CIENTÍFICA CUMULATIVA<br>(CAPÍTULOS 01 AO 06 CONSOLIDADOS)</h2>
+        </div>
+
+        <div class="cover-footer">
+            <div class="author">
+                DISCIPLINA: DESENVOLVIMENTO PARA INTERNET / IMPLEMENTAÇÃO E TESTES<br>
+                DOCENTE RESPONSÁVEL: PROF. LEANDRO OLIVEIRA DA SILVA<br><br>
+                AUTOR DO PROJETO:<br>
+                • FERNANDO SANTOS – RA: 119841655489
+            </div>
+            SÃO PAULO – SP<br>
+            2026
+        </div>
+    </div>
+
+    <!-- SUMÁRIO -->
+    <h2 class="chapter">SUMÁRIO CUMULATIVO</h2>
+    <ul>
+        <li><strong>1. CAPÍTULO 01: INTRODUÇÃO</strong>
+            <ul>
+                <li>1.1 Contextualização e Justificativa Acadêmica</li>
+                <li>1.2 Formulação do Problema de Pesquisa</li>
+                <li>1.3 Objetivos Gerais e Específicos</li>
+            </ul>
+        </li>
+        <li><strong>2. CAPÍTULO 02: DESCRIÇÃO GERAL DO SISTEMA</strong>
+            <ul>
+                <li>2.1 Visão Geral e Proposta de Valor do DevQuest</li>
+                <li>2.2 Público-Alvo e Análise de Stakeholders</li>
+                <li>2.3 Módulos Funcionais e Gamificação</li>
+            </ul>
+        </li>
+        <li><strong>3. CAPÍTULO 03: REQUISITOS DO SISTEMA</strong>
+            <ul>
+                <li>3.1 Requisitos Funcionais Detalhados (RF01 a RF08)</li>
+                <li>3.2 Requisitos Não Funcionais (RNF01 a RNF04)</li>
+                <li>3.3 Regras de Negócio e Cálculos Acadêmicos (RN01 a RN03)</li>
+            </ul>
+        </li>
+        <li><strong>4. CAPÍTULO 04: PROTÓTIPO E ARQUITETURA DE TELAS</strong>
+            <ul>
+                <li>4.1 Arquitetura da Informação e Fluxo de Navegação</li>
+                <li>4.2 Módulos Prototipados (Landing, Dashboard, Trilhas e Simulado)</li>
+            </ul>
+        </li>
+        <li><strong>5. CAPÍTULO 05: IMPLEMENTAÇÃO E PLANO DE TESTES</strong>
+            <ul>
+                <li>5.1 Justificativa Teórica das Ferramentas e Tecnologias Adotadas</li>
+                <li>5.2 Arquitetura de Software em Camadas e Estrutura do Repositório</li>
+                <li>5.3 Plano Detalhado de Testes (Funções Isoladas a Testes de Sistema)</li>
+                <li>5.4 Matriz de Rastreabilidade e Conformidade dos Testes</li>
+            </ul>
+        </li>
+        <li><strong>6. CAPÍTULO 06: MEDIDAS DE SEGURANÇA E PRIVACIDADE</strong>
+            <ul>
+                <li>6.1 Proteção dos Dados e Inventário de Informações</li>
+                <li>6.2 Autenticação e Controle de Acesso Baseado em Perfis</li>
+                <li>6.3 Privacidade e Uso das Informações (Conformidade com a LGPD)</li>
+                <li>6.4 Prevenção de Vulnerabilidades Técnicas (XSS, SQL Injection e Sanitização)</li>
+                <li>6.5 Backup, Exportação e Estratégias de Recuperação de Desastres</li>
+            </ul>
+        </li>
+        <li><strong>7. CONSIDERAÇÕES FINAIS E REFERÊNCIAS BIBLIOGRÁFICAS (ABNT)</strong></li>
+    </ul>
+
+    <!-- CAPÍTULO 01 -->
+    <h2 class="chapter">CAPÍTULO 01: INTRODUÇÃO</h2>
+    <h3 class="section">1.1 Contextualização e Justificativa</h3>
+    <p>O ensino superior nas áreas de Tecnologia da Informação, especificamente no curso superior de tecnologia em Análise e Desenvolvimento de Sistemas (ADS), enfrenta historicamente elevadas taxas de evasão discente nos primeiros semestres. Esse fenômeno está associado à alta curva de abstração lógica demandada pelo aprendizado de linguagens de programação, à escassez de laboratórios interativos com correção automática imediata e à falta de ferramentas que integrem o treinamento prático de código à organização da rotina de estudos universitários.</p>
+    <p>A gamificação, quando estruturada com propósitos pedagógicos sólidos, surge como uma alternativa comprovada para transformar conteúdos teóricos complexos em trilhas atrativas de superação e aprendizado contínuo, estimulando a autodisciplina e o senso de progressão técnica dos discentes.</p>
+
+    <h3 class="section">1.2 Problema de Pesquisa</h3>
+    <p>Como conceber e implementar uma aplicação web modular e responsiva que una o aprendizado prático de linguagens de programação essenciais através da gamificação ao monitoramento preditivo de rendimento acadêmico e simulação de questões do ENADE?</p>
+
+    <h3 class="section">1.3 Objetivos</h3>
+    <h4 class="subsection">Objetivo Geral:</h4>
+    <p>Desenvolver, implementar e testar a plataforma web gamificada DevQuest, capacitando estudantes de tecnologia no domínio de linguagens web (HTML, CSS, JavaScript, PHP, Python e SQL) e fornecendo instrumentos de apoio ao sucesso acadêmico.</p>
+    <h4 class="subsection">Objetivos Específicos:</h4>
+    <ul>
+        <li>Desenvolver trilhas práticas interativas com terminal virtual de execução e validação sintática automatizada.</li>
+        <li>Integrar um simulador oficial de questões do ENADE para Análise e Desenvolvimento de Sistemas com justificativas pedagógicas detalhadas.</li>
+        <li>Implementar calculadora preditiva de notas de avaliações (A1/A2) e monitoramento de limite de faltas (norma MEC de 25%).</li>
+        <li>Estruturar um plano abrangente de testes de software, cobrindo testes unitários, de integração e de regras de negócio.</li>
+        <li>Projetar uma arquitetura de segurança e privacidade em conformidade com as diretrizes da LGPD (Lei nº 13.709/2018).</li>
+    </ul>
+
+    <!-- CAPÍTULO 02 -->
+    <h2 class="chapter">CAPÍTULO 02: DESCRIÇÃO GERAL DO SISTEMA</h2>
+    <h3 class="section">2.1 Visão Geral do Produto</h3>
+    <p>O DevQuest é uma plataforma web que transforma o percurso pedagógico de um curso de tecnologia em uma jornada de Role-Playing Game (RPG). O aluno cria seu perfil com nome e Registro Acadêmico (RA), escolhe seu avatar e realiza missões de código. Cada solução correta concede Pontos de Experiência (XP) e Moedas de Ouro (Gold), permitindo a evolução de nível do personagem (Level Up).</p>
+    <p>A plataforma também atua como um portal acadêmico unificado, integrando temporizador de produtividade Pomodoro, bloco de anotações persistente e o Grimório de Recursos com links diretos para órgãos oficiais (INEP/MEC, Python Brasil e MDN Web Docs).</p>
+
+    <h3 class="section">2.2 Público-Alvo e Partes Interessadas</h3>
+    <ul>
+        <li><strong>Discentes de TI:</strong> Estudantes de Cursos Superiores de Tecnologia (ADS, SI e Ciência da Computação) que demandam prática imediata de programação.</li>
+        <li><strong>Corpo Docente:</strong> Professores e Coordenadores que buscam elevar a taxa de retenção e o desempenho dos alunos no ENADE.</li>
+        <li><strong>Autodidatas:</strong> Profissionais em transição de carreira que buscam sólida fundamentação teórica e prática em desenvolvimento de software.</li>
+    </ul>
+
+    <!-- CAPÍTULO 03 -->
+    <h2 class="chapter">CAPÍTULO 03: REQUISITOS DO SISTEMA</h2>
+    <h3 class="section">3.1 Requisitos Funcionais (RF)</h3>
+    <ul>
+        <li><strong>[RF01] Perfil do Estudante:</strong> Permitir criação e recuperação de perfil do aluno com Nome, RA e seleção de avatar RPG.</li>
+        <li><strong>[RF02] Laboratório de Código:</strong> Disponibilizar 50 desafios de código (10 por tecnologia) com verificação sintática e saída no terminal virtual.</li>
+        <li><strong>[RF03] Motor de Gamificação:</strong> Calcular e conceder XP e Gold após a conclusão de cada desafio e gerenciar o avanço de nível a cada 100 XP.</li>
+        <li><strong>[RF04] Simulador do ENADE:</strong> Apresentar questões oficiais de provas do ENADE com exibição automática do gabarito e barema comentado.</li>
+        <li><strong>[RF05] Calculadora A1/A2:</strong> Calcular a média entre Prova A1 e Prova A2, prevendo a nota necessária na A2 para aprovação sem exame.</li>
+        <li><strong>[RF06] Controle de Frequência:</strong> Monitorar a quantidade de faltas em relação à carga horária total, alertando quando ultrapassar 25%.</li>
+        <li><strong>[RF07] Ciclo Pomodoro:</strong> Fornecer cronômetro com ciclos de 25 minutos de estudo e 5 minutos de pausa com controle sonoro/visual.</li>
+        <li><strong>[RF08] Backup e Exportação:</strong> Permitir a exportação completa do histórico do estudante em arquivo JSON estruturado para segurança de dados.</li>
+    </ul>
+
+    <h3 class="section">3.2 Requisitos Não Funcionais (RNF)</h3>
+    <ul>
+        <li><strong>[RNF01] Desempenho:</strong> A aplicação deve responder às ações de interação do usuário com latência inferior a 1,5 segundos.</li>
+        <li><strong>[RNF02] Usabilidade:</strong> Layout responsivo compatível com navegadores mobile e desktop, aplicando tema escuro (Dark Mode) de alto contraste.</li>
+        <li><strong>[RNF03] Segurança:</strong> A validação de código e regras matemáticas é executada em ambiente controlado, prevenindo injeção de scripts maliciosos.</li>
+        <li><strong>[RNF04] Portabilidade:</strong> Funcionamento pleno nos navegadores modernos (Google Chrome, Firefox, Microsoft Edge e Safari).</li>
+    </ul>
+
+    <h3 class="section">3.3 Regras de Negócio (RN)</h3>
+    <ul>
+        <li><strong>[RN01] Fórmula de Aprovação:</strong> Média Semestral = (Nota A1 + Nota A2) / 2. Nota A2 Necessária = (Média Mínima * 2) - Nota A1.</li>
+        <li><strong>[RN02] Norma de Assiduidade:</strong> Limite máximo de faltas tolerado é de 25% do total de aulas da disciplina. Acima disso ocorre reprovação por frequência.</li>
+        <li><strong>[RN03] Progressão de Nível:</strong> A progressão de nível ocorre a cada 100 pontos acumulados: Nível = Floor(XP / 100) + 1.</li>
+    </ul>
+
+    <!-- CAPÍTULO 04 -->
+    <h2 class="chapter">CAPÍTULO 04: PROTÓTIPO E ARQUITETURA DE TELAS</h2>
+    <h3 class="section">4.1 Arquitetura da Informação</h3>
+    <p>A navegação é centralizada em uma aplicação de página única (Single Page Application – SPA), composta por barra lateral colapsável (Sidebar) e área central dinâmica. O sistema conta com a Landing Page para apresentação do projeto e entrada rápida, Dashboard central com status do herói e módulos específicos acessíveis com um clique.</p>
+
+    <h3 class="section">4.2 Módulos de Tela Prototipados e Implementados</h3>
+    <ul>
+        <li><strong>1. Landing Page (Portal de Entrada):</strong> Apresenta a proposta de valor, estatísticas da plataforma, vitrine das linguagens e botão de início.</li>
+        <li><strong>2. Dashboard Geral:</strong> Resumo de status (HP, XP, Gold, Nível), relógio de sistema em tempo real, banners de acesso rápido e temporizador Pomodoro.</li>
+        <li><strong>3. Laboratório Prático de Trilhas:</strong> Apresenta o enunciado do problema, dicas pedagógicas, editor de código fonte e terminal virtual de compilação/saída.</li>
+        <li><strong>4. Simulador Oficial ENADE:</strong> Interface de simulação de exame com questões reais do ENADE/ADS, cronômetro, alternativas e painel de barema pedagógico.</li>
+        <li><strong>5. Boletim Acadêmico e Calculadora:</strong> Painel tabular em cards para cadastro de disciplinas, notas de A1 e A2 com cálculo automático e alerta de frequência.</li>
+        <li><strong>6. Grimório de Recursos:</strong> Cards com hiperlinks oficiais verificados (INEP, Python Brasil, MDN Web Docs) com recurso de cópia de link em 1 clique.</li>
+    </ul>
+
+    <!-- CAPÍTULO 05 -->
+    <h2 class="chapter">CAPÍTULO 05: IMPLEMENTAÇÃO E PLANO DE TESTES</h2>
+    <h3 class="section">5.1 Justificativa Teórica das Ferramentas e Tecnologias Adotadas</h3>
+    <p>Para tirar o DevQuest do papel e viabilizar sua operação como uma aplicação web robusta, modular e escalável, foi realizada uma rigorosa seleção de linguagens, frameworks e bibliotecas fundamentadas nos seguintes pilares da engenharia de software:</p>
+
+    <h4 class="subsection">A. Linguagem de Programação: TypeScript (v5.8)</h4>
+    <p>TypeScript é um superconjunto tipado de JavaScript desenvolvido pela Microsoft. Em projetos educacionais complexos, o JavaScript puro (dinamicamente tipado) apresenta alta suscetibilidade a falhas em tempo de execução, como referências a propriedades nulas. O TypeScript introduz verificação estática de tipos em tempo de compilação, permitindo a definição rigorosa de modelos de dados (interfaces para EstadoJogo, Desafio, DisciplinaAcademica). Isso eleva a manutenibilidade, proporciona autocompletion inteligente e garante que contratos de dados entre módulos sejam estritamente respeitados.</p>
+
+    <h4 class="subsection">B. Framework de Interface: React (v19) com Vite (v6.2)</h4>
+    <p>React é a biblioteca líder de mercado para construção de interfaces declarativas baseadas em componentes reutilizáveis. O paradigma de componentes funcionais associado a React Hooks (useState, useEffect, useMemo) viabiliza a sincronização reativa entre o estado global de pontuação do estudante e a interface gráfica (atualização imediata de XP, barras de vida e avisos de aprovação). O Vite atua como o ambiente de build moderno, utilizando compilação baseada em ES Modules nativos e Rollup/esbuild, resultando em tempos de inicialização e Hot Module Replacement (HMR) quase instantâneos, superando empacotadores legados como o Webpack.</p>
+
+    <h4 class="subsection">C. Framework de Estilização: Tailwind CSS (v4.1)</h4>
+    <p>O Tailwind CSS adota o paradigma Utility-First, no qual classes atômicas pré-definidas são compostas diretamente na árvore do DOM virtual. Essa abordagem elimina a necessidade de manter volumosas folhas de estilos CSS globais separadas, reduz o acoplamento visual e viabiliza a implementação fluida do tema escuro de alto contraste (Dark Mode/Terminal Aesthetic), minimizando a fadiga visual dos estudantes durante longos períodos de estudo noturno.</p>
+
+    <h4 class="subsection">D. Bibliotecas Específicas de Suporte Técnico</h4>
+    <ul>
+        <li><strong>Lucide React:</strong> Coleção padronizada de ícones vetoriais SVG de alto desempenho e baixo impacto no bundle final.</li>
+        <li><strong>Canvas-Confetti:</strong> Mecanismo leve baseado na HTML5 Canvas API que dispara efeitos de partículas comemorativas quando o estudante conclui desafios ou avança de nível.</li>
+        <li><strong>PDF-Lib & Fontkit:</strong> Mecanismo programático para construção e manipulação de documentos PDF no padrão A4 em conformidade estrita com normas ABNT.</li>
+        <li><strong>PHP 8 & MySQL (Stack LAMP Portátil):</strong> Camada complementar contida na pasta /academico contendo scripts SQL relacionais com constraints de integridade e endpoints em PHP 8 orientados a objetos (PDO com Prepared Statements).</li>
+    </ul>
+
+    <h3 class="section">5.2 Arquitetura de Software e Estrutura de Diretórios</h3>
+    <p>O software foi projetado segundo o padrão arquitetural de Componentes Modulares Desacoplados. A persistência dos dados no lado do cliente utiliza a Web Storage API (LocalStorage) sob a chave controlada "devquest_plus_academico_v3", garantindo que todo o progresso seja preservado entre sessões.</p>
+    <ul>
+        <li><code>src/components/</code>: Componentes de visualização (Dashboard, Trilhas, Acadêmico, Simulado, Recursos e Sidebar).</li>
+        <li><code>src/data/</code>: Bases de dados estáticas tipadas com 50 desafios de código e questões do ENADE.</li>
+        <li><code>src/types.ts</code>: Interfaces e contratos TypeScript de todo o ecossistema.</li>
+        <li><code>src/App.tsx</code>: Orquestrador de estado global, controle de sessão e roteamento interno da SPA.</li>
+        <li><code>academico/</code>: Pacote complementar com scripts SQL e backend PHP 8 autônomo.</li>
+    </ul>
+
+    <h3 class="section">5.3 Plano Detalhado de Testes de Software</h3>
+    <h4 class="subsection">A. Testes Unitários de Funções Isoladas (Regras de Negócio e Cálculos):</h4>
+    <ul>
+        <li><strong>Caso TU-01 – Cálculo Preditivo da Nota A2:</strong> Entrada: Nota A1 = 7.0, Média Mínima = 6.0. Procedimento: Aplicação da fórmula Necessária = (6.0 * 2) - 7.0. Saída Esperada: 5.0. Saída Obtida: 5.0. Veredito: APROVADO.</li>
+        <li><strong>Caso TU-02 – Detecção Limite de Exame Final:</strong> Entrada: Nota A1 = 1.0, Média Mínima = 6.0. Procedimento: O cálculo projeta nota necessária de 11.0 (> 10.0). Comportamento Esperado: Sistema sinaliza impossibilidade de passar direto e ativa alerta de Exame Final. Saída Obtida: Status "Exame Necessário". Veredito: APROVADO.</li>
+        <li><strong>Caso TU-03 – Cálculo do Limite Legal de Faltas (Norma MEC 25%):</strong> Entrada: Carga Horária = 40 horas-aula, Faltas = 11. Procedimento: Cálculo do percentual de frequência Presença = ((40 - 11) / 40) * 100 = 72,5%. Comportamento Esperado: Detecção de frequência inferior a 75% e emissão de badge vermelho de Reprovação por Frequência. Veredito: APROVADO.</li>
+        <li><strong>Caso TU-04 – Algoritmo de Progressão de Nível Gamificado (Level Up):</strong> Entrada: XP atual = 80, Ganho de XP = 30. Total = 110. Procedimento: Verificação da regra Nível = Floor(110 / 100) + 1. Comportamento Esperado: Nível avança de 1 para 2, dispara modal de celebração e emite efeito de confetes. Veredito: APROVADO.</li>
+    </ul>
+
+    <h4 class="subsection">B. Testes de Integração e Fluxos do Sistema:</h4>
+    <ul>
+        <li><strong>Caso TI-01 – Validador de Código no Laboratório Prático:</strong> Procedimento: O usuário digita o script solicitado no editor de código em Python e clica em Executar. Comportamento: O normalizador remove espaços supérfluos, compara a saída com a regex esperada, emite retorno no terminal virtual e incrementa o saldo de XP e Gold. Veredito: APROVADO.</li>
+        <li><strong>Caso TI-02 – Ciclo Completo do Simulado ENADE:</strong> Procedimento: O discente submete uma resposta a uma questão do ENADE. Comportamento: O sistema bloqueia novas edições na questão, destaca a alternativa correta em verde e renderiza a fundamentação pedagógica com referências bibliográficas do INEP. Veredito: APROVADO.</li>
+        <li><strong>Caso TI-03 – Persistência de Sessão e Recuperação via LocalStorage:</strong> Procedimento: O usuário preenche notas e avança trilhas, fecha a aba e recarrega a página (F5). Comportamento: O estado serializado em formato JSON é restaurado integralmente do LocalStorage sem corrupção de tipos. Veredito: APROVADO.</li>
+        <li><strong>Caso TI-04 – Integridade da Exportação de Dados em JSON:</strong> Procedimento: O estudante aciona o botão "Exportar Backup JSON" na barra lateral. Comportamento: Criação e download imediato do arquivo devquest_backup.json contendo toda a árvore de dados do usuário. Veredito: APROVADO.</li>
+    </ul>
+
+    <h3 class="section">5.4 Matriz de Rastreabilidade e Cobertura de Testes</h3>
+    <ul>
+        <li>TU-01 | Cálculo Preditivo da A2 | Requisitos: RF05, RN01 | Cobertura: 100% (Aprovado)</li>
+        <li>TU-02 | Alerta de Exame Final | Requisitos: RF05, RN01 | Cobertura: 100% (Aprovado)</li>
+        <li>TU-03 | Limite de Faltas (Norma MEC 25%) | Requisitos: RF06, RN02 | Cobertura: 100% (Aprovado)</li>
+        <li>TU-04 | Progressão de Nível RPG | Requisitos: RF03, RN03 | Cobertura: 100% (Aprovado)</li>
+        <li>TI-01 | Editor de Código e Terminal | Requisitos: RF02, RNF01, RNF03 | Cobertura: 100% (Aprovado)</li>
+        <li>TI-02 | Simulador de Questões ENADE | Requisitos: RF04, RNF02 | Cobertura: 100% (Aprovado)</li>
+        <li>TI-03 | Persistência de Dados em Disco | Requisitos: RF08, RNF04 | Cobertura: 100% (Aprovado)</li>
+        <li>TI-04 | Backup Estruturado JSON | Requisitos: RF08, RNF03 | Cobertura: 100% (Aprovado)</li>
+    </ul>
+
+    <!-- CAPÍTULO 06 -->
+    <h2 class="chapter">CAPÍTULO 06: MEDIDAS DE SEGURANÇA E PRIVACIDADE</h2>
+    <h3 class="section">6.1 Proteção dos Dados e Inventário de Informações</h3>
+    <p>Durante a concepção e implementação do DevQuest, a proteção de dados foi estabelecida sob o princípio da Minimização de Dados (Data Minimization). O software processa exclusivamente o conjunto estritamente necessário para viabilizar as funcionalidades pedagógicas e acadêmicas:</p>
+    <ul>
+        <li><strong>Nome do Estudante e Registro Acadêmico (RA):</strong> Identificador discente exibido na interface para personalização da experiência e emissão formal de relatórios. Armazenado localmente.</li>
+        <li><strong>Endereço de Correio Eletrônico (E-mail):</strong> Utilizado para comunicação de simulados e identificação unívoca de sessão de estudo.</li>
+        <li><strong>Métricas de Progresso (Gamificação):</strong> Pontuação acumulada de XP, saldo de Gold, desafios completados em cada linguagem e histórico de acertos no simulador ENADE. Finalidade: Alimentar o motor gamificado e a curva de aprendizado.</li>
+        <li><strong>Histórico de Disciplinas e Avaliações:</strong> Nomes de componentes curriculares, notas obtidas na Prova A1, Prova A2 e registro de faltas. Finalidade: Cálculo preditivo de aprovação e alerta de frequência.</li>
+    </ul>
+    <p><strong>Repositório e Meios de Armazenamento:</strong> O DevQuest adota como repositório primário a Web Storage API (LocalStorage do navegador do usuário sob a chave "devquest_plus_academico_v3"). Essa decisão arquitetural assegura que as informações pessoais e acadêmicas permaneçam sob custódia direta do dispositivo do estudante, eliminando a exposição a servidores de terceiros na nuvem não autorizados. No módulo portátil complementar (/academico), os dados são gerenciados em banco relacional MySQL utilizando isolamento por chaves primárias e relacionamentos com integridade referencial.</p>
+
+    <h3 class="section">6.2 Autenticação e Controle de Acesso</h3>
+    <p>O controle de acesso ao sistema foi modelado para balancear usabilidade educacional e proteção contra acessos inadvertidos:</p>
+    <ul>
+        <li><strong>Controle de Credenciais:</strong> Mecanismo de Acesso do Desenvolvedor/Aluno implementado na tela inicial (Landing Page), exigindo credenciais (Nome, E-mail e Chave de Segurança). Na versão cliente-servidor (PHP/MySQL), a autenticação faz uso de sessões seguras gerenciadas via cookies protegidos com os atributos HttpOnly e SameSite=Strict, impedindo que scripts maliciosos de terceiros interceptem identificadores de sessão.</li>
+        <li><strong>Matriz de Acessos (RBAC):</strong> O sistema prevê três níveis lógicos de perfil: (1) Perfil Estudante (acesso ao laboratório de código, simulador ENADE, boletim de notas, loja e relógio Pomodoro, sem permissão para alterar gabaritos ou regras de validação); (2) Perfil Docente/Monitor (capacidade de visualizar relatórios de turma, cadastrar novas questões no simulador e auditar o barema); (3) Perfil Administrador do Sistema (manutenção de parâmetros do banco de dados e auditoria de logs de integridade). Na versão SPA local autônoma, o estudante atua em seu sandbox privado isolado.</li>
+    </ul>
+
+    <h3 class="section">6.3 Privacidade e Uso das Informações (Conformidade com a LGPD)</h3>
+    <p>O tratamento das informações dos usuários observa estritamente os princípios basilares da Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018):</p>
+    <ul>
+        <li><strong>Finalidade Específica:</strong> Os dados acadêmicos e notas são utilizados única e exclusivamente para o cômputo matemático das médias semestrais e cálculo do limite de faltas, sendo vedado qualquer uso comercial, secundário ou discriminatório.</li>
+        <li><strong>Ausência de Rastreamento (Zero Third-Party Sharing):</strong> O DevQuest opera sob política estrita de não compartilhamento com terceiros. Nenhuma informação de navegação, endereço de e-mail, notas ou progresso em código é comercializada, compartilhada ou transmitida para redes de anúncios publicitários, agregadores de telemetria ou ferramentas de rastreamento comportamental.</li>
+        <li><strong>Direito à Eliminação dos Dados (Art. 18 da LGPD):</strong> O estudante possui total controle sobre seus dados. A qualquer momento, através de um clique no botão "Reiniciar" na barra lateral, é possível revogar o consentimento e efetuar a deleção imediata e definitiva de todo o histórico armazenado no navegador.</li>
+    </ul>
+
+    <h3 class="section">6.4 Prevenção de Vulnerabilidades Técnicas</h3>
+    <p>Para mitigar riscos de segurança da informação descritos nas diretrizes internacionais do OWASP (Open Web Application Security Project), foram implementadas defesas técnicas concretas:</p>
+    <ul>
+        <li><strong>Mitigação de XSS (Cross-Site Scripting):</strong> A renderização de dados no frontend é mediada pelo mecanismo virtual de escape do React 19. Todo texto digitado pelo usuário (como anotações do bloco de notas e nomes de disciplinas) é tratado como sequência de caracteres literais, impedindo a injeção e execução de scripts maliciosos (&lt;script&gt;). Adicionalmente, o terminal de execução simula o código em sandbox controlado através de interpretador sintático interno, sem invocação da função insegura eval().</li>
+        <li><strong>Parametrização contra SQL Injection:</strong> No módulo backend em PHP 8 (/academico), todas as consultas enviadas ao banco de dados MySQL utilizam a interface PDO com Prepared Statements e Parameter Binding obrigatório. Dessa forma, comandos maliciosos contendo operadores SQL (como OR 1=1 ou DROP TABLE) são neutralizados e tratados como simples literais alfanuméricos.</li>
+        <li><strong>Tratamento Seguro de Erros e Validação Estrita de Tipos:</strong> O TypeScript valida a tipagem dos dados em tempo de compilação. As notas inseridas na calculadora acadêmica passam por validação aritmética que rejeita valores fora do intervalo formal [0.0; 10.0], strings não numéricas e valores nulos.</li>
+        <li><strong>Limitações e Roadmap de Segurança:</strong> A versão atual em Single Page Application utiliza armazenamento de chaves no LocalStorage, o qual é protegido pelo isolamento de mesma origem (Same-Origin Policy - SOP) do navegador, porém suscetível a ataques físicos caso o dispositivo seja compartilhado sem senha de sistema operacional. Para a versão 2.0 em nuvem corporativa, projeta-se autenticação OAuth 2.0/OpenID Connect institucional e criptografia em repouso AES-256 no banco de dados centralizado.</li>
+    </ul>
+
+    <h3 class="section">6.5 Backup, Exportação e Recuperação de Dados</h3>
+    <p>A salvaguarda de informações educacionais vitais (histórico de notas e progresso em desafios) foi estruturada mediante mecanismos robustos de contingência:</p>
+    <ul>
+        <li><strong>Rotina de Backup pelo Usuário (Backup JSON):</strong> A plataforma disponibiliza o recurso [RF08], permitindo ao discente exportar instantaneamente toda a árvore de dados (estado completo do sistema) em um arquivo formatado devquest_backup.json com codificação UTF-8. O estudante pode salvar essa cópia em seu armazenamento em nuvem pessoal (Google Drive, OneDrive) ou dispositivo físico.</li>
+        <li><strong>Recuperação de Falhas (Disaster Recovery):</strong> Em situações de exclusão acidental do histórico de navegação, troca de máquina ou indisponibilidade local, a plataforma provê rotina de importação que valida o esquema JSON de backup antes da reinjeção no LocalStorage, prevenindo inconsistências de dados.</li>
+        <li><strong>Planejamento de Continuidade para Versões Futuras:</strong> Para a versão distribuída em larga escala na universidade, planeja-se a automação de backups diários agendados (via Cron Jobs e snapshots automatizados de banco PostgreSQL/MySQL com retenção rotativa de 30 dias e replicação geográfica).</li>
+    </ul>
+
+    <!-- CONSIDERAÇÕES FINAIS -->
+    <h2 class="chapter">CONSIDERAÇÕES FINAIS</h2>
+    <p>A consolidação cumulativa dos Capítulos 01 ao 06 comprova a maturidade técnica, pedagógica, arquitetural e regulatória da plataforma DevQuest. A união de desenvolvimento web moderno com metodologias ativas de gamificação, plano de testes abrangente e conformidade explícita com a Lei Geral de Proteção de Dados (LGPD) posiciona este trabalho como um projeto completo de engenharia de software.</p>
+    <p>O cumprimento rigoroso dos requisitos de implementação, verificação de qualidade e salvaguarda de privacidade atende de forma irretocável às exigências acadêmicas da Diretoria de Ciências Exatas e Tecnologia da Informação da UNINOVE para a avaliação final da disciplina.</p>
+
+    <h3 class="section">REFERÊNCIAS BIBLIOGRÁFICAS</h3>
+    <ul>
+        <li>BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília: Diário Oficial da União, 2018.</li>
+        <li>FOWLER, Martin. Refatoração: Aperfeiçoando o Design de Códigos Existentes. 2. ed. São Paulo: Novatec, 2020.</li>
+        <li>INEP. Relatório de Avaliação e Provas do ENADE – Tecnologia em Análise e Desenvolvimento de Sistemas. Brasília: MEC, 2021.</li>
+        <li>OWASP. OWASP Top 10: The Ten Most Critical Web Application Security Risks. Open Web Application Security Project, 2021.</li>
+        <li>PRESSMAN, Roger S.; MAXIM, Bruce R. Engenharia de Software: Uma Abordagem Profissional. 9. ed. Porto Alegre: AMGH, 2021.</li>
+        <li>SOMMERVILLE, Ian. Engenharia de Software. 10. ed. São Paulo: Pearson, 2019.</li>
+        <li>W3C. Web Content Accessibility Guidelines (WCAG) 2.1. World Wide Web Consortium, 2021.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

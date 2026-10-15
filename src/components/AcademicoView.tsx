@@ -9,7 +9,8 @@ import {
   Sparkles, 
   Calendar, 
   Award,
-  BookOpen
+  BookOpen,
+  FileSpreadsheet
 } from 'lucide-react';
 import { DisciplinaAcademica, EstadoJogo } from '../types';
 
@@ -98,13 +99,24 @@ export const AcademicoView: React.FC<AcademicoViewProps> = ({
             </p>
           </div>
 
-          <button
-            onClick={() => setModalNovaDisciplina(true)}
-            className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] shadow-md shadow-emerald-600/20 cursor-pointer shrink-0"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Adicionar Matéria</span>
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
+            <button
+              onClick={() => window.print()}
+              className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 hover:text-white border border-emerald-500/30 font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] shadow-xs cursor-pointer"
+              title="Imprimir ou salvar boletim acadêmico em PDF"
+            >
+              <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
+              <span>Imprimir / Salvar Boletim</span>
+            </button>
+
+            <button
+              onClick={() => setModalNovaDisciplina(true)}
+              className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] shadow-md shadow-emerald-600/20 cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Adicionar Matéria</span>
+            </button>
+          </div>
         </div>
 
         {/* Resumo de Indicadores */}

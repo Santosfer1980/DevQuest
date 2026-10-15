@@ -17,7 +17,9 @@ import {
   FolderDown,
   Calculator,
   Globe,
-  Award
+  Award,
+  FileText,
+  FileSpreadsheet
 } from 'lucide-react';
 import { TabType, EstadoJogo } from '../types';
 
@@ -112,6 +114,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       sublabel: 'Terminal e sincronização',
       icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
       badge: 'Git'
+    },
+    { 
+      id: 'relatorio', 
+      label: 'Documentação Oficial', 
+      sublabel: 'Capítulos 01 ao 06 (ABNT)',
+      icon: <FileText className="w-4 h-4 text-[#00ffaa]" />,
+      badge: '100 pts'
     }
   ];
 
@@ -257,7 +266,47 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
             {/* Botão de Destaque: Explorador da Pasta Acadêmica */}
             {onAbrirPainelAcademico && (
-              <div className="pt-2">
+              <div className="pt-2 space-y-1.5">
+                <button
+                  onClick={() => {
+                    setTabAtual('relatorio');
+                    setIsOpenMobile(false);
+                  }}
+                  className="w-full flex items-center justify-between p-2.5 rounded-xl text-left bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-200 hover:text-white transition-all duration-200 cursor-pointer group shadow-xs"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="p-1.5 rounded-lg bg-indigo-600 text-white group-hover:scale-105 transition-transform">
+                      <FileText className="w-4 h-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold leading-none text-white">Visualizar Documento</p>
+                      <p className="text-[10px] text-indigo-300 truncate mt-1">Capítulos 01 ao 06 (PDF)</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded font-bold bg-indigo-500/30 text-indigo-200 border border-indigo-500/30">
+                    ABNT
+                  </span>
+                </button>
+
+                <a
+                  href="/DevQuest_Documentacao_Capitulos_01_ao_06.pdf"
+                  download="DevQuest_Documentacao_Capitulos_01_ao_06.pdf"
+                  className="w-full flex items-center justify-between p-2.5 rounded-xl text-left bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-200 hover:text-white transition-all duration-200 cursor-pointer group shadow-xs"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="p-1.5 rounded-lg bg-indigo-600 text-white group-hover:scale-105 transition-transform">
+                      <FileText className="w-4 h-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold leading-none text-white">Baixar PDF Oficial</p>
+                      <p className="text-[10px] text-indigo-300 truncate mt-1">Capítulos 01 ao 06</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded font-bold bg-indigo-500/30 text-indigo-200 border border-indigo-500/30">
+                    PDF
+                  </span>
+                </a>
+
                 <button
                   onClick={() => {
                     onAbrirPainelAcademico();

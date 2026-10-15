@@ -17,7 +17,10 @@ import {
   GraduationCap,
   Calculator,
   Award,
-  Globe
+  Globe,
+  Download,
+  FileSpreadsheet,
+  Loader2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EstadoJogo, TabType } from '../types';
@@ -211,6 +214,39 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
         <div className="text-2xl sm:text-3xl font-black text-cyan-400 tracking-wider shrink-0">
           {relogio.hora}
+        </div>
+      </section>
+
+      {/* Banner de Entrega Acadêmica - Download do PDF Completo */}
+      <section className="bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-slate-900 border border-indigo-500/40 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-300 hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-500/10">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-300 shrink-0">
+            <FileText className="w-6 h-6" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-indigo-300 tracking-wide uppercase">Entrega Oficial 100 Pontos</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+                PRONTO PARA ENVIO
+              </span>
+            </div>
+            <h2 className="text-base font-bold text-white mt-0.5">
+              Documentação Completa DevQuest (Capítulos 01 ao 06)
+            </h2>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Introdução, Descrição, Requisitos, Telas, Implementação/Testes e Segurança/Privacidade (LGPD).
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
+          <button
+            onClick={() => onNavegarPara('relatorio')}
+            className="px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] shadow-md shadow-indigo-600/20 cursor-pointer"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Visualizar Documento Oficial (PDF)</span>
+          </button>
         </div>
       </section>
 

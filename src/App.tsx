@@ -22,6 +22,7 @@ import { PainelArquivosAcademico } from './components/PainelArquivosAcademico';
 import { AcademicoView } from './components/AcademicoView';
 import { RecursosView } from './components/RecursosView';
 import { SimuladoEnadeView } from './components/SimuladoEnadeView';
+import { DocumentoAcademicoView } from './components/DocumentoAcademicoView';
 import { FolderDown } from 'lucide-react';
 
 const STORAGE_KEY = 'devquest_plus_academico_v3';
@@ -173,11 +174,23 @@ export default function App() {
     quiz: { titulo: 'Arena Conceitual e Avaliação Formativa', trilha: 'Teoria & POO' },
     historia: { titulo: 'Biblioteca dos Pioneiros e Literatura Clássica', trilha: 'História & Livros' },
     loja: { titulo: 'Incentivos de Foco e Bem-Estar', trilha: 'Saúde Mental' },
-    github: { titulo: 'Repositório GitHub & Terminal Git', trilha: 'Versionamento & DevOps' }
+    github: { titulo: 'Repositório GitHub & Terminal Git', trilha: 'Versionamento & DevOps' },
+    relatorio: { titulo: 'Documentação Oficial (Capítulos 01 ao 06)', trilha: 'Entrega Acadêmica UNINOVE' }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col lg:flex-row antialiased selection:bg-indigo-500 selection:text-white">
+    <div 
+      className="min-h-screen text-slate-100 flex flex-col lg:flex-row antialiased selection:bg-indigo-500 selection:text-white"
+      style={{
+        backgroundImage: `
+          radial-gradient(ellipse at top right, rgba(13, 14, 18, 0.88) 0%, rgba(13, 14, 18, 0.96) 100%),
+          url('/bg_cyber.jpg')
+        `,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       {/* Sidebar Navigation */}
       <Sidebar
         tabAtual={tabAtual}
@@ -310,6 +323,10 @@ export default function App() {
             <GithubHubView
               estado={estado}
             />
+          )}
+
+          {tabAtual === 'relatorio' && (
+            <DocumentoAcademicoView />
           )}
         </main>
       </div>

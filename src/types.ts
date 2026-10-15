@@ -1,4 +1,4 @@
-export type TabType = 'dashboard' | 'trilhas' | 'quiz' | 'simulado' | 'academico' | 'recursos' | 'historia' | 'loja' | 'github';
+export type TabType = 'dashboard' | 'trilhas' | 'quiz' | 'simulado' | 'academico' | 'recursos' | 'historia' | 'loja' | 'github' | 'relatorio';
 
 export type LinguagemId = 'html_css' | 'javascript' | 'php' | 'python' | 'sql';
 

@@ -127,12 +127,15 @@ export const LandingView: React.FC<LandingViewProps> = ({ onLoginSucesso, usuari
               <div className="flex flex-wrap items-center gap-4">
                 <button 
                   onClick={() => {
-                    const el = document.getElementById('input-username');
-                    el?.focus();
+                    onLoginSucesso({
+                      nome: nome || 'Fernando Santos',
+                      email: email || 'fernando.fernando.santos@uni9.edu.br',
+                      avatarUrl: avatarPreview || ''
+                    });
                   }}
                   className="px-6 py-3.5 bg-[#00ffaa] text-[#0d0e12] font-bold uppercase text-xs sm:text-sm tracking-wider transition-all duration-200 hover:shadow-[0_0_20px_#00ffaa] hover:-translate-y-0.5 cursor-pointer font-mono"
                 >
-                  Começar Agora_
+                  Começar Agora (Entrar no App)_
                 </button>
                 <button 
                   onClick={() => scrollToSection('objetivos-grid')}

@@ -19,7 +19,8 @@ import {
   Globe,
   Award,
   FileText,
-  FileSpreadsheet
+  FileSpreadsheet,
+  ShieldAlert
 } from 'lucide-react';
 import { TabType, EstadoJogo } from '../types';
 
@@ -116,9 +117,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
       badge: 'Git'
     },
     { 
+      id: 'cybershield', 
+      label: 'CyberShield Hacker', 
+      sublabel: 'Red & Blue Team (OWASP)',
+      icon: <ShieldAlert className="w-4 h-4 text-emerald-400" />,
+      badge: 'Hacker'
+    },
+    { 
       id: 'relatorio', 
       label: 'Documentação Oficial', 
-      sublabel: 'Capítulos 01 ao 06 (ABNT)',
+      sublabel: 'Capítulos 01 ao 08 (ABNT)',
       icon: <FileText className="w-4 h-4 text-[#00ffaa]" />,
       badge: '100 pts'
     }
@@ -136,13 +144,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <aside
         id="app-sidebar"
-        className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-slate-900 border-r border-slate-800/80 flex flex-col justify-between p-5 transition-transform duration-300 ease-out lg:translate-x-0 ${
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const ids = navItems.map(n => n.id);
+            const atualIdx = ids.indexOf(tabAtual);
+            if (atualIdx !== -1) {
+              const proximoIdx = e.key === 'ArrowDown'
+                ? (atualIdx + 1) % ids.length
+                : (atualIdx - 1 + ids.length) % ids.length;
+              setTabAtual(ids[proximoIdx]);
+              const el = document.getElementById(`nav-${ids[proximoIdx]}`);
+              el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+          }
+        }}
+        className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-slate-900/95 backdrop-blur-md border-r border-slate-800/80 flex flex-col justify-between transition-transform duration-300 ease-out lg:translate-x-0 outline-none focus:ring-1 focus:ring-indigo-500/50 ${
           isOpenMobile ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="space-y-6">
+        {/* Container rolável interno */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-6 scrollbar-thin scrollbar-thumb-indigo-500/30">
           {/* Logo & Portal Branding */}
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
                 <GraduationCap className="w-5 h-5" />
@@ -333,7 +358,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer com controle acadêmico e Logout */}
-        <div className="pt-4 border-t border-slate-800 space-y-2">
+        <div className="p-5 pt-3 border-t border-slate-800 space-y-2 shrink-0 bg-slate-900/95">
           {onLogout && (
             <button
               onClick={onLogout}

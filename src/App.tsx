@@ -23,6 +23,7 @@ import { AcademicoView } from './components/AcademicoView';
 import { RecursosView } from './components/RecursosView';
 import { SimuladoEnadeView } from './components/SimuladoEnadeView';
 import { DocumentoAcademicoView } from './components/DocumentoAcademicoView';
+import { CyberShieldView } from './components/CyberShieldView';
 import { FolderDown } from 'lucide-react';
 
 const STORAGE_KEY = 'devquest_plus_academico_v3';
@@ -175,7 +176,8 @@ export default function App() {
     historia: { titulo: 'Biblioteca dos Pioneiros e Literatura Clássica', trilha: 'História & Livros' },
     loja: { titulo: 'Incentivos de Foco e Bem-Estar', trilha: 'Saúde Mental' },
     github: { titulo: 'Repositório GitHub & Terminal Git', trilha: 'Versionamento & DevOps' },
-    relatorio: { titulo: 'Documentação Oficial (Capítulos 01 ao 06)', trilha: 'Entrega Acadêmica UNINOVE' }
+    relatorio: { titulo: 'Documentação Oficial (Capítulos 01 ao 08)', trilha: 'Entrega Acadêmica UNINOVE' },
+    cybershield: { titulo: 'CyberShield: Laboratório de Hacking Ético', trilha: 'Segurança da Informação' }
   };
 
   return (
@@ -327,6 +329,14 @@ export default function App() {
 
           {tabAtual === 'relatorio' && (
             <DocumentoAcademicoView />
+          )}
+
+          {tabAtual === 'cybershield' && (
+            <CyberShieldView
+              estado={estado}
+              onAtualizarEstado={atualizarEstado}
+              onVerificarLevelUp={verificarLevelUp}
+            />
           )}
         </main>
       </div>
